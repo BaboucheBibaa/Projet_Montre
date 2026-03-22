@@ -30,17 +30,4 @@ public class Heure {
     public int getHeures() {
         return heure.getHour();
     }
-
-    public static void main(String[] args) throws InterruptedException {
-
-        Heure temps = new Heure();
-        System.out.println(temps.getTemps());
-        while (true){
-            Thread.sleep(1000);
-            temps.setHeure();
-            System.out.println(temps.getTemps());
-
-        }
-
-    }
 }

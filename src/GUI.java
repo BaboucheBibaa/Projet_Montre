@@ -1,43 +1,42 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GUI extends JFrame {
-
-
-    public Heure heure;
-    public Jour journee;
+    private Cadran cadran;
+    private Cadran cadran2;
+    int centreX;
+    int centreY;
+    int radius;
     GUI(int w, int h){
         super("Montre");
-        heure = new Heure();
-        journee = new Jour();
-
         this.setBackground(Color.WHITE);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(w,h);
         this.setResizable(false);
         this.setVisible(true);
+        centreX = 200;
+        centreY = 200;
+        radius = 200;
+        //cadran = new CadranNumerique(centreX, centreY);
+        cadran = new CadranAiguilles(centreX, centreY, radius);
+    }
+    public Cadran getCadran(){
+        return cadran;
     }
     public void paint(Graphics g) {
         super.paint(g);
-
-        int centreX = 200;
-        int centreY = 200;
-        int longueur = 100;
-        int secondes = heure.getSecondes();
-
-        double angle = Math.toRadians(secondes * 6 - 90);
-
-        int x = centreX + (int)(longueur * Math.cos(angle));
-        int y = centreY + (int)(longueur * Math.sin(angle));
-
-        g.drawLine(centreX, centreY, x, y);
+        //Utile car tout est exécuté en parallèle, donc le constructeur peut ne pas être appelé avant de faire paint
+        //Cela génère une erreur sinon
+        if (cadran != null){
+            cadran.dessiner(g, centreX, centreY);
+        }
     }
 
-    public static void main() throws InterruptedException{
-        GUI gui = new GUI(400,400);
-
-        while (true){
-            gui.heure.setHeure();
+    public static void main() throws InterruptedException {
+        GUI gui = new GUI(400, 400);
+        while (true) {
+            gui.getCadran().getHeure().setHeure();
             Thread.sleep(1000);
             gui.repaint();
         }

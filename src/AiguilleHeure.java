@@ -1,6 +1,6 @@
 public class AiguilleHeure extends Aiguille{
-    AiguilleHeure(int _longueur,int centreX,int centreY){
-        super(_longueur,centreX,centreY);
+    AiguilleHeure(int _longueur){
+        super(_longueur);
     }
 
     public double calculAngle(Heure heure){

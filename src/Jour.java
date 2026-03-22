@@ -1,7 +1,5 @@
-import java.time.DayOfWeek;
+import java.awt.*;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
 import java.time.format.DateTimeFormatter;
 
 public class Jour {
@@ -17,7 +15,6 @@ public class Jour {
         jour = aujourdhui.getDayOfMonth();
         mois = aujourdhui.getMonthValue();
         annee = aujourdhui.getYear();
-
     }
 
     public int getJour(){
@@ -36,10 +33,8 @@ public class Jour {
         return aujourdhui;
     }
 
-
-    public static void main(){
-        Jour journee = new Jour();
-        System.out.println(journee.getJour()+"/"+journee.getMois()+"/"+journee.getAnnee());
-        System.out.println(journee.getAujourdhui());
+    public void dessiner(Graphics g, int centreX, int centreY){
+        g.setFont(new Font("Arial", Font.BOLD, 15));
+        g.drawString(getAujourdhui().toString(), centreX-40, centreY+65);
     }
 }
