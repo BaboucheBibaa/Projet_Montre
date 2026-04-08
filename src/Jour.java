@@ -41,5 +41,6 @@ public class Jour {
         Jour journee = new Jour();
         System.out.println(journee.getJour()+"/"+journee.getMois()+"/"+journee.getAnnee());
         System.out.println(journee.getAujourdhui());
+        System.out.println("tEST");
     }
 }
