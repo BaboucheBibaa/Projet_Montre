@@ -1,3 +1,5 @@
+package model.date;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -6,7 +8,7 @@ public class Heure {
     private LocalTime heure;
 
     private DateTimeFormatter formatter;
-    Heure(){
+    public Heure(){
         heure = LocalTime.now();
         formatter=DateTimeFormatter.ofPattern("HH:mm:ss");
     }

@@ -1,3 +1,7 @@
+package model.aiguille;
+
+import model.date.Heure;
+
 public abstract class Aiguille {
     protected int longueur;
 
@@ -10,4 +14,5 @@ public abstract class Aiguille {
     public int getLongueur() {
         return longueur;
     }
+    public void setLongueur(int _longueur) { longueur = _longueur; }
 }

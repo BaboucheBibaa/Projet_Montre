@@ -1,4 +1,8 @@
-public class AiguilleSeconde extends Aiguille{
+package model.aiguille;
+
+import model.date.Heure;
+
+public class AiguilleSeconde extends Aiguille {
     public AiguilleSeconde(int _longueur){
         super(_longueur);
     }
