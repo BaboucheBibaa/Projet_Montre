@@ -1,0 +1,43 @@
+package xml;
+
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+
+public class XmlReader {
+    private final String background;
+    private final String policy;
+    private final String clockFormat;
+    private final String dateFormat;
+
+    public XmlReader(String filename) throws ParserConfigurationException, IOException, SAXException{
+            File file = new File(filename);
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+            background = doc.getElementsByTagName("background").item(0).getTextContent();
+            policy = doc.getElementsByTagName("policy").item(0).getTextContent();
+            clockFormat = doc.getElementsByTagName("clock-format").item(0).getTextContent();
+            dateFormat = doc.getElementsByTagName("date-format").item(0).getTextContent();
+        }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public String getPolicy() {
+        return policy;
+    }
+
+    public String getClockFormat() {
+        return clockFormat;
+    }
+
+    public String getDateFormat() {
+        return dateFormat;
+    }
+}

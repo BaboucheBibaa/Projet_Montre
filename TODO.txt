@@ -9,10 +9,11 @@ Affichage de la batterie (constante)
 Rythme cardiaque (constante)
 Calendrier (optionnel)
 
-Idée du format du fichier de cache:
-data:{
-    "background": "BLACK"
-    "policy": "ARIAL"
-    "clock-format": "numerical" //needles si format aiguilles
-    "date-format": "24" // ou 12 si format anglais
-}
+Idée du format du fichier de config:
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <background>BLACK</background>
+    <policy>ARIAL</policy>
+    <clock-format>numerical</clock-format>
+    <date-format>24</date-format>
+</config>
