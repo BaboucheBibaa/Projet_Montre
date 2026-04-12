@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><config>
-    <background>WHITE</background>
-    <policy>COMIC</policy>
+    <bg-r>98</bg-r>
+    <bg-g>255</bg-g>
+    <bg-b>89</bg-b>
+    <policy>ARIAL</policy>
     <clock-format>analog</clock-format>
     <date-format>12</date-format>
 </config>

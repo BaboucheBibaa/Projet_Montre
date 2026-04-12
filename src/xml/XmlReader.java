@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class XmlReader {
-    private final String background;
+    private final String r;
+    private final String g;
+    private final String b;
     private final String policy;
     private final String clockFormat;
     private final String dateFormat;
@@ -19,14 +21,22 @@ public class XmlReader {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
             Document doc = builder.parse(file);
-            background = doc.getElementsByTagName("background").item(0).getTextContent();
+            r = doc.getElementsByTagName("bg-r").item(0).getTextContent();
+            g = doc.getElementsByTagName("bg-g").item(0).getTextContent();
+            b = doc.getElementsByTagName("bg-b").item(0).getTextContent();
             policy = doc.getElementsByTagName("policy").item(0).getTextContent();
             clockFormat = doc.getElementsByTagName("clock-format").item(0).getTextContent();
             dateFormat = doc.getElementsByTagName("date-format").item(0).getTextContent();
         }
 
-    public String getBackground() {
-        return background;
+    public String getR() {
+        return r;
+    }
+    public String getB(){
+        return b;
+    }
+    public String getG(){
+        return g;
     }
 
     public String getPolicy() {

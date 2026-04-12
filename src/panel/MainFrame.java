@@ -1,9 +1,7 @@
 package panel;
 
-import cadran.Cadran;
-import cadran.CadranAiguilles;
-
 import javax.swing.*;
+import java.awt.*;
 
 public class MainFrame extends JFrame {
     private BasePanel panelCourant;
@@ -24,9 +22,8 @@ public class MainFrame extends JFrame {
         repaint();
     }
 
-    public static void main(String[] args){
+    static void main(){
         MainFrame frame = new MainFrame();
-        Cadran c = new CadranAiguilles(400,400,400);
-        frame.changementPanel(new PanelCadran(c,frame));
+        frame.changementPanel(PanelCadran.createFromConfig(frame));
     }
 }

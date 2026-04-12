@@ -1,5 +1,7 @@
 package panel;
 
+import xml.XmlWriter;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -7,11 +9,24 @@ import java.awt.image.BufferedImage;
 
 public class ImageCouleurs extends JPanel{
     private BufferedImage image;
-    ImageCouleurs(){
-        int width = 300;
-        int height = 300;
+    private XmlWriter writer;
 
-        // Création de l'image avec toutes les couleurs HSB
+    ImageCouleurs(){
+        addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                int rgb = image.getRGB(e.getX(), e.getY());
+                Color c = new Color(rgb);
+                writer = new XmlWriter("config.xml");
+                writer.setR(String.valueOf(c.getRed()));
+                writer.setG(String.valueOf(c.getGreen()));
+                writer.setB(String.valueOf(c.getBlue()));
+                System.out.println("Couleur choisie : " + c);
+                repaint();
+            }
+        });
+    }
+
+    private void generateImage(int width, int height) {
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         for (int x = 0; x < width; x++) {
@@ -24,21 +39,18 @@ public class ImageCouleurs extends JPanel{
                 image.setRGB(x, y, rgb);
             }
         }
-        addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                if(e.getX() >= 0 && e.getX() < width && e.getY() >= 0 && e.getY() < height){
-                    int rgb = image.getRGB(e.getX(), e.getY());
-                    Color c = new Color(rgb);
-                    System.out.println("Couleur choisie : " + c);
-                    // Exemple : changer le fond du panel avec la couleur choisie
-                    setBackground(c);
-                    repaint();
-                }
-            }
-        });
     }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        int width = getWidth();
+        int height = getHeight();
+
+        if (image == null || image.getWidth() != width || image.getHeight() != height) {
+            generateImage(width, height);
+        }
+
         g.drawImage(image, 0, 0, null);
     }
 

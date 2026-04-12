@@ -67,9 +67,16 @@ public class XmlWriter {
     }
 
 
-    public void setBackground(String background) {
-        setValue("background", background);
+    public void setR(String r) {
+        setValue("bg-r", r);
     }
+    public void setG(String g) {
+        setValue("bg-g", g);
+    }
+    public void setB(String b) {
+        setValue("bg-b", b);
+    }
+
 
     public void setPolicy(String policy) {
         setValue("policy", policy);
