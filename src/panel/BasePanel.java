@@ -11,6 +11,9 @@ public abstract class BasePanel extends JPanel {
     protected XmlReader reader;
     protected XmlWriter writer;
     protected Color bgColor;
+    protected JButton btnLeft;
+    protected JButton btnRight;
+
     public BasePanel(MainFrame _mainframe){
         mainFrame = _mainframe;
         setLayout(new BorderLayout());
@@ -22,6 +25,9 @@ public abstract class BasePanel extends JPanel {
         } catch (Exception e){
             e.printStackTrace();
         }
+        btnLeft = new JButton("<");
+        btnRight = new JButton(">");
+
         initBoutonsNavigation();
         initContenuPanel();
 
@@ -31,13 +37,11 @@ public abstract class BasePanel extends JPanel {
         }
     }
     protected void initBoutonsNavigation(){
-        JButton btnLeft = new JButton("<");
-        JButton btnRight = new JButton(">");
         btnLeft.setPreferredSize(new Dimension(45, 0));
         btnRight.setPreferredSize(new Dimension(45, 0));
 
         // ActionListener
-        btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelParametres(mainFrame)));
+        btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));
         btnRight.addActionListener(e -> System.out.println("Bouton > cliqué"));
 
         // Ajouter les boutons directement sur les côtés du BasePanel
@@ -47,5 +51,4 @@ public abstract class BasePanel extends JPanel {
 
     protected abstract void initContenuPanel();
 
-    protected JPanel getPanelContenu(){ return panelContenu; }
 }
