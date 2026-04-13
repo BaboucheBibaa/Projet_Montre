@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><config>
+    <bg-r>255</bg-r>
+    <bg-g>201</bg-g>
+    <bg-b>55</bg-b>
+    <policy>MONOSPACED</policy>
+    <clock-format>numeric</clock-format>
+    <date-format>12</date-format>
+</config>

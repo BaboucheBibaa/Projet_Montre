@@ -38,12 +38,14 @@ public class CadranAiguilles extends Cadran {
         Graphics2D g2 = (Graphics2D) g;
 
         // Cercle du cadran
+        g2.setBackground(Color.ORANGE);
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
         g2.drawOval(centreX - radius, centreY - radius, radius * 2, radius * 2);
-
+        //Même les chiffres sont dans la bonne police !
+        String police = reader.getPolicy();
         // Chiffres 1 à 12
-        g2.setFont(new Font("Arial", Font.BOLD, 16));
+        g2.setFont(new Font(police, Font.BOLD, 16));
         for (int i = 1; i <= 12; i++) {
             double angle = Math.toRadians(i * 30 - 90);
             int x = centreX + (int)((radius - 25) * Math.cos(angle));

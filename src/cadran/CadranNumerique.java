@@ -15,7 +15,9 @@ public class CadranNumerique extends Cadran {
     public void dessiner(Graphics g, int centreX, int centreY){
         String temps = heure.getTemps();
         jour.dessiner(g,centreX,centreY);
-        g.setFont(new Font("Arial", Font.BOLD, 30));
+        //lecture du XML (reader = variable protected, accessible via héritage) pour récupérer la police d'écriture
+        String police = reader.getPolicy();
+        g.setFont(new Font(police, Font.BOLD, 30));
         FontMetrics fm = g.getFontMetrics();
         int textWidth = fm.stringWidth(temps);
         int x = centreX - textWidth / 2;

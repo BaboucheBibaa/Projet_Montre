@@ -1,19 +1,30 @@
 package panel;
 
-import cadran.Cadran;
-import cadran.CadranAiguilles;
-import cadran.CadranNumerique;
+import xml.XmlReader;
+import xml.XmlWriter;
 
 import javax.swing.*;
 import java.awt.*;
 
 public abstract class BasePanel extends JPanel {
-    protected JPanel panelNavigation;
     protected JPanel panelContenu;
     protected MainFrame mainFrame;
+    protected Color bgColor;
+    protected XmlReader reader;
+    protected XmlWriter writer;
+    protected JButton btnRight;
+    protected JButton btnLeft;
     public BasePanel(MainFrame _mainframe){
         mainFrame = _mainframe;
         setLayout(new BorderLayout());
+
+        try {
+            reader = new XmlReader("config.xml");
+            writer = new XmlWriter("config.xml");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        bgColor = new Color(reader.getR(),reader.getG(),reader.getB());
         initBoutonsNavigation();
         initContenuPanel();
         // S'assurer que panelContenu est ajouté au CENTER
@@ -22,23 +33,15 @@ public abstract class BasePanel extends JPanel {
         }
     }
     protected void initBoutonsNavigation(){
-        panelNavigation = new JPanel(new BorderLayout());
         JButton btnLeft = new JButton("<");
         JButton btnRight = new JButton(">");
-        btnLeft.setPreferredSize(new Dimension(45, 45));
-        btnRight.setPreferredSize(new Dimension(45, 45));
 
         // ActionListener
-        btnLeft.addActionListener(e -> {
-            mainFrame.changementPanel(new PanelParametres(mainFrame));
-        });
-        btnRight.addActionListener(e -> System.out.println("Bouton > cliqué"));
+        btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));
+        btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelCalendrier(mainFrame)));
 
-        panelNavigation.add(btnLeft, BorderLayout.WEST);
-        panelNavigation.add(btnRight, BorderLayout.EAST);
-
-        // Ajouter le panelNavigation au BasePanel
-        this.add(panelNavigation, BorderLayout.NORTH);
+        this.add(btnLeft, BorderLayout.WEST);
+        this.add(btnRight, BorderLayout.EAST);
     }
 
     protected abstract void initContenuPanel();
