@@ -8,8 +8,6 @@ public class PanelChoixCouleur extends BasePanel {
         super(mainFrame);
     }
     protected void initBoutonsNavigation(){
-        JButton btnLeft = new JButton("<");
-        JButton btnRight = new JButton(">");
         btnLeft.setPreferredSize(new Dimension(45, 0));
         btnRight.setPreferredSize(new Dimension(45, 0));
 

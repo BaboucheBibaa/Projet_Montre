@@ -2,7 +2,9 @@ package cadran;
 
 import model.date.Jour;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.FontMetrics;
+import java.awt.Font;
 
 public class CadranNumerique extends Cadran {
 
@@ -15,7 +17,6 @@ public class CadranNumerique extends Cadran {
     public void dessiner(Graphics g, int centreX, int centreY){
         String temps = heure.getTemps();
         jour.dessiner(g,centreX,centreY);
-        //lecture du XML (reader = variable protected, accessible via héritage) pour récupérer la police d'écriture
         String police = reader.getPolicy();
         g.setFont(new Font(police, Font.BOLD, 30));
         FontMetrics fm = g.getFontMetrics();

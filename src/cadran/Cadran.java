@@ -2,8 +2,7 @@ package cadran;
 
 import model.date.Heure;
 import xml.XmlReader;
-
-import java.awt.*;
+import java.awt.Graphics;
 
 public abstract class Cadran {
     protected Heure heure;

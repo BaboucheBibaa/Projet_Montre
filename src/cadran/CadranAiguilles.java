@@ -1,12 +1,13 @@
 package cadran;
 
-import model.aiguille.Aiguille;
-import model.aiguille.AiguilleHeure;
-import model.aiguille.AiguilleMinute;
-import model.aiguille.AiguilleSeconde;
+import model.aiguille.*;
 import model.date.Jour;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Color;
+import java.awt.BasicStroke;
+import java.awt.Font;
 
 public class CadranAiguilles extends Cadran {
 

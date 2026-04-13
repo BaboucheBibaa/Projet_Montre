@@ -16,6 +16,8 @@ public abstract class BasePanel extends JPanel {
     protected JButton btnLeft;
     public BasePanel(MainFrame _mainframe){
         mainFrame = _mainframe;
+        btnLeft = new JButton("<");
+        btnRight = new JButton(">");
         setLayout(new BorderLayout());
 
         try {
@@ -32,9 +34,8 @@ public abstract class BasePanel extends JPanel {
             add(panelContenu, BorderLayout.CENTER);
         }
     }
+
     protected void initBoutonsNavigation(){
-        JButton btnLeft = new JButton("<");
-        JButton btnRight = new JButton(">");
 
         // ActionListener
         btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));

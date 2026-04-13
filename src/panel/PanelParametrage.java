@@ -8,8 +8,6 @@ public class PanelParametrage extends BasePanel {
         super(mainFrame);
     }
     public void initBoutonsNavigation(){
-        btnLeft = new JButton("<");
-        btnRight = new JButton(">");
         btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));
         this.add(btnRight, BorderLayout.EAST);
     }

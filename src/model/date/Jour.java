@@ -2,7 +2,10 @@ package model.date;
 
 import xml.XmlReader;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.FontMetrics;
+import java.awt.Font;
+
 import java.time.LocalDate;
 
 public class Jour {
