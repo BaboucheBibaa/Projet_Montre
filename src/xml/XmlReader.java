@@ -29,14 +29,14 @@ public class XmlReader {
             dateFormat = doc.getElementsByTagName("date-format").item(0).getTextContent();
         }
 
-    public String getR() {
-        return r;
+    public int getR() {
+        return Integer.parseInt(r);
     }
-    public String getB(){
-        return b;
+    public int getB(){
+        return Integer.parseInt(b);
     }
-    public String getG(){
-        return g;
+    public int getG(){
+        return Integer.parseInt(g);
     }
 
     public String getPolicy() {
