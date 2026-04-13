@@ -3,8 +3,8 @@ package panel;
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelParametres extends BasePanel {
-    public PanelParametres(MainFrame mainFrame){
+public class PanelChoixCouleur extends BasePanel {
+    public PanelChoixCouleur(MainFrame mainFrame){
         super(mainFrame);
     }
     protected void initBoutonsNavigation(){
@@ -15,7 +15,7 @@ public class PanelParametres extends BasePanel {
 
         // ActionListener
         btnRight.addActionListener(e -> mainFrame.changementPanel(PanelCadran.createFromConfig(mainFrame)));
-
+        btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelParametrage(mainFrame)));
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);
     }
