@@ -6,6 +6,8 @@ import xml.XmlWriter;
 import javax.swing.*;
 import java.awt.*;
 
+
+//Classe modélisant le contenu du panel courant affiché au sein de la frame courante du projet.
 public abstract class BasePanel extends JPanel {
     protected JPanel panelContenu;
     protected MainFrame mainFrame;

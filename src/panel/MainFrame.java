@@ -1,8 +1,8 @@
 package panel;
 
 import javax.swing.*;
-import java.awt.*;
 
+//Classe modélisant la frame courante du projet.
 public class MainFrame extends JFrame {
     private BasePanel panelCourant;
 
@@ -22,9 +22,5 @@ public class MainFrame extends JFrame {
         add(panelCourant);
         revalidate();
         repaint();
-    }
-
-    static void main(){
-        MainFrame frame = new MainFrame();
     }
 }
