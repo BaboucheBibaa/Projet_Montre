@@ -11,6 +11,8 @@ public class MainFrame extends JFrame {
         setSize(400,400);
         setLocationRelativeTo(null);
         setVisible(true);
+        //par défaut on affiche l'horloge
+        changementPanel(PanelCadran.createFromConfig(this));
     }
     public void changementPanel(BasePanel nouveauPanel){
         if (panelCourant != null){
@@ -24,6 +26,5 @@ public class MainFrame extends JFrame {
 
     static void main(){
         MainFrame frame = new MainFrame();
-        frame.changementPanel(PanelCadran.createFromConfig(frame));
     }
 }
