@@ -1,4 +1,4 @@
-package model;
+package model.time;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

@@ -1,6 +1,6 @@
 package cadran;
 
-import model.Heure;
+import model.time.Heure;
 import xml.XmlReader;
 
 import java.awt.*;

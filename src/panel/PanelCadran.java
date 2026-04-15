@@ -4,16 +4,22 @@ import cadran.Cadran;
 import cadran.CadranAiguilles;
 import cadran.CadranNumerique;
 import xml.XmlReader;
+import model.sante.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelCadran extends BasePanel {
     private Cadran cadran;
+    private RythmeCardiaque rythme;
+    private Batterie batterie;
+
 
     public PanelCadran(Cadran c,MainFrame mainFrame) {
         super(mainFrame);
         this.cadran = c;
+        this.rythme= new RythmeCardiaque();
+        this.batterie= new Batterie();
         lancerHorloge();
     }
 
@@ -64,6 +70,9 @@ public class PanelCadran extends BasePanel {
                 int centreX = getWidth() / 2;
                 int centreY = getHeight() / 2;
                 int radius = Math.min(getWidth(), getHeight()) / 3;
+                rythme.dessiner(g, centreX, centreY+60);
+                batterie.dessiner(g, 0, 0);
+
                 cadran.setCentre(centreX, centreY);
                 if (cadran instanceof CadranAiguilles ca) {
                     ca.setRadius(radius);

@@ -1,6 +1,6 @@
 package panel;
 
-import model.Chronometre;
+import model.time.Chronometre;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
 package model.aiguille;
 
-import model.Heure;
+import model.time.Heure;
 
 public class AiguilleSeconde extends Aiguille {
     public AiguilleSeconde(int _longueur){

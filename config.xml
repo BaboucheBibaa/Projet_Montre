@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><config>
-    <bg-r>255</bg-r>
-    <bg-g>24</bg-g>
-    <bg-b>113</bg-b>
+    <bg-r>124</bg-r>
+    <bg-g>255</bg-g>
+    <bg-b>110</bg-b>
     <policy>MONOSPACED</policy>
     <clock-format>analog</clock-format>
     <date-format>24</date-format>
