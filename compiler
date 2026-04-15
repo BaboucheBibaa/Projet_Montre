@@ -1,2 +1,2 @@
 javac -d out src/cadran/*.java src/model/aiguille/*.java  src/panel/*.java src/xml/*.java src/model/sante/*.java src/model/time/*.java src/Main.java
-java -cp out panel.MainFrame
+java -cp out Main
