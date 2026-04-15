@@ -5,8 +5,8 @@
 //Gestion de la couleur du fond d'écran
 //Chronomètre
 //Mise en cache des données sélectionnées par l'utilisateur (sous format json, optionnel mais j'ai vachement envie de faire ça)
-Affichage de la batterie (constante)
-Rythme cardiaque (constante)
+//Affichage de la batterie (constante)
+//Rythme cardiaque (constante)
 //Calendrier (optionnel)
 
 Idée du format du fichier de config:
