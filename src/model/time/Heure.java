@@ -1,4 +1,4 @@
-package model.date;
+package model.time;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +26,10 @@ public class Heure {
         }
     }
 
+
+    public LocalTime getHeure() {
+        return heure;
+    }
     public void setHeure() {
         this.heure = LocalTime.now();
     }

@@ -1,8 +1,8 @@
 package panel;
 
 import javax.swing.*;
-import java.awt.*;
 
+//Classe modélisant la frame courante du projet.
 public class MainFrame extends JFrame {
     private BasePanel panelCourant;
 
@@ -11,6 +11,8 @@ public class MainFrame extends JFrame {
         setSize(400,400);
         setLocationRelativeTo(null);
         setVisible(true);
+        //par défaut on affiche l'horloge
+        changementPanel(PanelCadran.createFromConfig(this));
     }
     public void changementPanel(BasePanel nouveauPanel){
         if (panelCourant != null){
@@ -20,10 +22,5 @@ public class MainFrame extends JFrame {
         add(panelCourant);
         revalidate();
         repaint();
-    }
-
-    static void main(){
-        MainFrame frame = new MainFrame();
-        frame.changementPanel(PanelCadran.createFromConfig(frame));
     }
 }

@@ -9,14 +9,18 @@ import java.awt.image.BufferedImage;
 
 public class ImageCouleurs extends JPanel{
     private BufferedImage image;
-    private XmlWriter writer;
+    protected XmlWriter writer;
 
     ImageCouleurs(){
+        try {
+            writer = new XmlWriter("config.xml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 int rgb = image.getRGB(e.getX(), e.getY());
                 Color c = new Color(rgb);
-                writer = new XmlWriter("config.xml");
                 writer.setR(String.valueOf(c.getRed()));
                 writer.setG(String.valueOf(c.getGreen()));
                 writer.setB(String.valueOf(c.getBlue()));

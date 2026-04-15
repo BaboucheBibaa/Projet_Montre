@@ -6,6 +6,8 @@ import xml.XmlWriter;
 import javax.swing.*;
 import java.awt.*;
 
+
+//Classe modélisant le contenu du panel courant affiché au sein de la frame courante du projet.
 public abstract class BasePanel extends JPanel {
     protected JPanel panelContenu;
     protected MainFrame mainFrame;
@@ -16,6 +18,8 @@ public abstract class BasePanel extends JPanel {
     protected JButton btnLeft;
     public BasePanel(MainFrame _mainframe){
         mainFrame = _mainframe;
+        btnLeft = new JButton("<");
+        btnRight = new JButton(">");
         setLayout(new BorderLayout());
 
         try {
@@ -32,17 +36,8 @@ public abstract class BasePanel extends JPanel {
             add(panelContenu, BorderLayout.CENTER);
         }
     }
-    protected void initBoutonsNavigation(){
-        JButton btnLeft = new JButton("<");
-        JButton btnRight = new JButton(">");
 
-        // ActionListener
-        btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));
-        btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelCalendrier(mainFrame)));
-
-        this.add(btnLeft, BorderLayout.WEST);
-        this.add(btnRight, BorderLayout.EAST);
-    }
+    protected abstract void initBoutonsNavigation();
 
     protected abstract void initContenuPanel();
 

@@ -33,6 +33,14 @@ public class PanelCalendrier extends BasePanel{
         }
     }
 
+    protected void initBoutonsNavigation(){
+        btnLeft.addActionListener(e-> mainFrame.changementPanel(PanelCadran.createFromConfig(mainFrame)));
+        btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelChronometre(mainFrame)));
+        this.add(btnLeft, BorderLayout.WEST);
+        this.add(btnRight, BorderLayout.EAST);
+
+    }
+
     public void remplirCalendrier(){
         JPanel contenu = this.getPanelContenu();
         if(contenu == null){return;}
