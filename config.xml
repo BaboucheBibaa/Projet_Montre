@@ -3,6 +3,6 @@
     <bg-g>24</bg-g>
     <bg-b>113</bg-b>
     <policy>MONOSPACED</policy>
-    <clock-format>numeric</clock-format>
+    <clock-format>analog</clock-format>
     <date-format>24</date-format>
 </config>

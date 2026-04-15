@@ -1,8 +1,6 @@
 package cadran;
 
 import model.aiguille.*;
-import model.date.Jour;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
@@ -15,15 +13,29 @@ public class CadranAiguilles extends Cadran {
     private Aiguille minuteAig;
     private Aiguille secondeAig;
     private int radius;
-    private Jour jour;
 
     public CadranAiguilles(int _centreX, int _centreY, int _radius){
         super(_centreX, _centreY);
-        jour = new Jour();
         radius = _radius;
         heureAig = new AiguilleHeure(radius/5);
         minuteAig = new AiguilleMinute(radius/4);
         secondeAig = new AiguilleSeconde(radius/3);
+    }
+
+    public Aiguille getHeureAig() {
+        return heureAig;
+    }
+
+    public Aiguille getMinuteAig() {
+        return minuteAig;
+    }
+
+    public Aiguille getSecondeAig() {
+        return secondeAig;
+    }
+
+    public int getRadius() {
+        return radius;
     }
 
 
@@ -71,7 +83,7 @@ public class CadranAiguilles extends Cadran {
         int yS = centreY + (int)(secondeAig.getLongueur() * Math.sin(angleS));
 
         //Affichage de la date sous l'horloge
-        jour.dessiner(g, centreX, centreY);
+        dessinerJour(g, centreX, centreY);
 
         //Aiguilles
         g2.setStroke(new BasicStroke(4));

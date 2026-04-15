@@ -35,15 +35,7 @@ public abstract class BasePanel extends JPanel {
         }
     }
 
-    protected void initBoutonsNavigation(){
-
-        // ActionListener
-        btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));
-        btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelCalendrier(mainFrame)));
-
-        this.add(btnLeft, BorderLayout.WEST);
-        this.add(btnRight, BorderLayout.EAST);
-    }
+    protected abstract void initBoutonsNavigation();
 
     protected abstract void initContenuPanel();
 

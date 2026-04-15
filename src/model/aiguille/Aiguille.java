@@ -1,6 +1,6 @@
 package model.aiguille;
 
-import model.date.Heure;
+import model.Heure;
 
 public abstract class Aiguille {
     protected int longueur;

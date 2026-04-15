@@ -3,11 +3,11 @@
     //Format numérique -> Option de la police d'écriture + format de l'affichage (format 12h ou 24h)
 //Affichage de la date du jour derrière le cadran de montre
 //Gestion de la couleur du fond d'écran
-Chronomètre
-Mise en cache des données sélectionnées par l'utilisateur (sous format json, optionnel mais j'ai vachement envie de faire ça)
+//Chronomètre
+//Mise en cache des données sélectionnées par l'utilisateur (sous format json, optionnel mais j'ai vachement envie de faire ça)
 Affichage de la batterie (constante)
 Rythme cardiaque (constante)
-Calendrier (optionnel)
+//Calendrier (optionnel)
 
 Idée du format du fichier de config:
 <?xml version="1.0" encoding="UTF-8"?>

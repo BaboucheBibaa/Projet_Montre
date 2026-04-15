@@ -47,6 +47,14 @@ public class PanelCadran extends BasePanel {
         }
     }
 
+    protected void initBoutonsNavigation(){
+        // ActionListener
+        btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));
+        btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelCalendrier(mainFrame)));
+
+        this.add(btnLeft, BorderLayout.WEST);
+        this.add(btnRight, BorderLayout.EAST);
+    }
     protected void initContenuPanel(){
         panelContenu = new JPanel(){
             //Redéfinition de classe anonyme de JPanel + surdéfinition de la méthode paintComponent
@@ -56,7 +64,6 @@ public class PanelCadran extends BasePanel {
                 int centreX = getWidth() / 2;
                 int centreY = getHeight() / 2;
                 int radius = Math.min(getWidth(), getHeight()) / 3;
-
                 cadran.setCentre(centreX, centreY);
                 if (cadran instanceof CadranAiguilles ca) {
                     ca.setRadius(radius);
@@ -67,6 +74,7 @@ public class PanelCadran extends BasePanel {
     }
 
     private void lancerHorloge(){
+        //timer de rafraîchissement toutes les secondes
         Timer timer = new Timer(1000, e -> {cadran.setHeure(); panelContenu.repaint();});
         timer.start();
     }
