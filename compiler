@@ -1,2 +1,5 @@
-javac -d out src/cadran/*.java src/model/aiguille/*.java  src/panel/*.java src/xml/*.java src/model/sante/*.java src/model/time/*.java src/Main.java
+//javac -d out src/cadran/*.java src/model/aiguille/*.java  src/panel/*.java src/xml/*.java src/model/sante/*.java src/model/time/*.java src/Main.java
+
+javac -d out src/cadran/*.java src/model/aiguille/*.java  src/panel/*.java src/xml/*.java src/model/sante/*.java src/model/time/*.java src/Main.java src/navigation/*.java src/config/*.java src/drawable/*.java
+
 java -cp out Main
