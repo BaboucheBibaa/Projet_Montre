@@ -13,7 +13,7 @@ public abstract class BasePanel extends JPanel{
     private GestionNavigation navigator;
 
     protected JPanel panelContenu;
-    protected Color bgColor;
+    private Color bgColor;
     protected JButton btnRight;
     protected JButton btnLeft;
     public BasePanel(GestionNavigation _navigator, GestionConfig _config){
@@ -41,11 +41,7 @@ public abstract class BasePanel extends JPanel{
     protected JPanel getPanelContenu(){ return panelContenu; }
 
     protected Color getBgColor() {
-        /*Renvoie la même couleur mais une référence différente
-        * Sans ça, on peut modifier la couleur d'un panel créé dans le futur
-        * Alors que tous les panels de la montre doivent avoir le même background
-        * */
-        return new Color(bgColor.getRGB());
+        return bgColor;
     }
 
     protected String getDateFormat() {

@@ -35,7 +35,7 @@ public class PanelChoixCouleur extends BasePanel {
         label.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelContenu.add(label, BorderLayout.NORTH);
 
-        //Classe interne pour l'affichage du panel des couleurs (utile uniquement ici)
+        //Classe interne pour l'affichage du panel des couleurs
         class ImageCouleurs extends JPanel {
             private BufferedImage image;
 
