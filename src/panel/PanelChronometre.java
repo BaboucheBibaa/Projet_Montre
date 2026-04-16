@@ -1,6 +1,8 @@
 package panel;
 
+import config.GestionConfig;
 import model.time.Chronometre;
+import navigation.GestionNavigation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,15 +11,15 @@ public class PanelChronometre extends BasePanel{
     private Chronometre chrono;
     private Timer timerRefresh;
 
-    public PanelChronometre(MainFrame mainFrame){
-        super(mainFrame);
+    public PanelChronometre(GestionNavigation navigator, GestionConfig _config){
+        super(navigator,_config);
         chrono = new Chronometre();
     }
 
     public void initBoutonsNavigation(){
         btnLeft.addActionListener(e -> {
             if (timerRefresh != null) timerRefresh.stop();
-            mainFrame.changementPanel(new PanelCalendrier(mainFrame));
+            this.naviguer(new PanelCalendrier(getNavigator(),getConfig()));
         });
         this.add(btnLeft, BorderLayout.WEST);
     }
@@ -28,18 +30,19 @@ public class PanelChronometre extends BasePanel{
                 super.paintComponent(g);
                 FontMetrics fm = g.getFontMetrics();
                 String temps = chrono.FormatTemps();
-                String police = reader.getPolicy();
+                String police = getPolicy();
                 g.setFont(new Font(police,Font.BOLD,30));
-                int x = (this.getWidth() - fm.stringWidth(temps)) / 15 / 2 ;
-                int y = ((this.getHeight() - fm.getHeight()) / 2);
+                int x = this.getWidth()  / 2 - fm.stringWidth(temps)-30; //-30 car offset créé avec la taille de police
+                int y = (this.getHeight() / 2);
 
                 g.drawString(temps, x, y);
             }
         };
-        panelContenu.setBackground(bgColor);
+        panelContenu.setBackground(getBgColor());
 
         JPanel panelBoutons = new JPanel();
         panelBoutons.setLayout(new FlowLayout());
+        panelBoutons.setBackground(getBgColor());
 
         JButton debut = new JButton("Commencer");
         JButton stop = new JButton("Stop");

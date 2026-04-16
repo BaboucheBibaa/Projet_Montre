@@ -2,18 +2,18 @@ package model.time;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import xml.XmlReader;
+
+import config.GestionConfig;
 
 public class Heure {
-
     private LocalTime heure;
-
     private DateTimeFormatter formatter;
-    public Heure(){
+    private GestionConfig config;
+    public Heure(GestionConfig _config){
         heure = LocalTime.now();
+        config = _config;
         try {
-            XmlReader reader = new XmlReader("config.xml");
-            String dateFormat = reader.getDateFormat();
+            String dateFormat = config.getDateFormat();
 
             if("12".equals(dateFormat)){
                 formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");

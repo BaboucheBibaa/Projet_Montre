@@ -1,5 +1,7 @@
 package cadran;
 
+import config.GestionConfig;
+import drawable.Drawable;
 import model.aiguille.*;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -7,15 +9,15 @@ import java.awt.Color;
 import java.awt.BasicStroke;
 import java.awt.Font;
 
-public class CadranAiguilles extends Cadran {
+public class CadranAiguilles extends Cadran implements Drawable {
 
     private Aiguille heureAig;
     private Aiguille minuteAig;
     private Aiguille secondeAig;
     private int radius;
 
-    public CadranAiguilles(int _centreX, int _centreY, int _radius){
-        super(_centreX, _centreY);
+    public CadranAiguilles(int _centreX, int _centreY, int _radius, GestionConfig _config){
+        super(_centreX, _centreY,_config);
         radius = _radius;
         heureAig = new AiguilleHeure(radius/5);
         minuteAig = new AiguilleMinute(radius/4);
@@ -56,7 +58,7 @@ public class CadranAiguilles extends Cadran {
         g2.setStroke(new BasicStroke(2));
         g2.drawOval(centreX - radius, centreY - radius, radius * 2, radius * 2);
         //Même les chiffres sont dans la bonne police !
-        String police = reader.getPolicy();
+        String police = config.getPolicy();
         // Chiffres 1 à 12
         g2.setFont(new Font(police, Font.BOLD, 16));
         for (int i = 1; i <= 12; i++) {

@@ -1,24 +1,27 @@
 package panel;
 
+import config.GestionConfig;
+import navigation.GestionNavigation;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelParametrage extends BasePanel {
-    public PanelParametrage(MainFrame mainFrame){
-        super(mainFrame);
+    public PanelParametrage(GestionNavigation navigator, GestionConfig _config){
+        super(navigator, _config);
     }
     public void initBoutonsNavigation(){
-        btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));
+        btnRight.addActionListener(e -> this.naviguer(new PanelChoixCouleur(getNavigator(),getConfig())));
         this.add(btnRight, BorderLayout.EAST);
     }
     protected void initContenuPanel() {
         panelContenu = new JPanel();
-        panelContenu.setBackground(bgColor);
+        panelContenu.setBackground(getBgColor());
         panelContenu.setLayout(new BoxLayout(panelContenu, BoxLayout.Y_AXIS));
 
-        String typeActuel = reader.getClockFormat();
-        String policeActuelle = reader.getPolicy();
-        String dateFormatActuel = reader.getDateFormat();
+        String typeActuel = getClockFormat();
+        String policeActuelle = getPolicy();
+        String dateFormatActuel = getDateFormat();
 
         String[] typeAffiche = {"Horloge à Aiguilles", "Horloge Numérique"};
         String[] policeAffiche = {"Monospaced", "Arial", "Sans Sérif"};
@@ -82,21 +85,21 @@ public class PanelParametrage extends BasePanel {
             int index = comboType.getSelectedIndex();
             if (index >= 0 && index < type.length) {
                 String valueToSave = type[index];
-                writer.setClockFormat(valueToSave);
+                setClockFormat(valueToSave);
             }
         });
         comboPolice.addActionListener(e -> {
             int index = comboPolice.getSelectedIndex();
             if (index >= 0 && index < police.length) {
                 String valueToSave = police[index];
-                writer.setPolicy(valueToSave);
+                setPolicy(valueToSave);
             }
         });
         comboFormatDate.addActionListener(e -> {
             int index = comboFormatDate.getSelectedIndex();
             if (index >= 0 && index < formatDate.length) {
                 String valueToSave = formatDate[index];
-                writer.setDateFormat(valueToSave);
+                setDateFormat(valueToSave);
             }
         });
 

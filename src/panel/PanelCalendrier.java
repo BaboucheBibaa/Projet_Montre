@@ -1,5 +1,8 @@
 package panel;
 
+import config.GestionConfig;
+import navigation.GestionNavigation;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,12 +19,12 @@ public class PanelCalendrier extends BasePanel{
     private LocalDate dateAffichee;
     private int JourSelectionne = -1;
 
-    public PanelCalendrier(MainFrame mainFrame){
-        super(mainFrame);
+    public PanelCalendrier(GestionNavigation navigator, GestionConfig _config){
+        super(navigator,_config);
         this.dateAffichee=LocalDate.now();
 
         if(this.getPanelContenu() != null){
-            this.getPanelContenu().setBackground(bgColor);
+            this.getPanelContenu().setBackground(getBgColor());
             this.getPanelContenu().setLayout(new BorderLayout());
         }
         remplirCalendrier();
@@ -34,8 +37,8 @@ public class PanelCalendrier extends BasePanel{
     }
 
     protected void initBoutonsNavigation(){
-        btnLeft.addActionListener(e-> mainFrame.changementPanel(PanelCadran.createFromConfig(mainFrame)));
-        btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelChronometre(mainFrame)));
+        btnLeft.addActionListener(e -> this.naviguer(PanelCadran.createFromConfig(getNavigator(),getConfig())));
+        btnRight.addActionListener(e -> this.naviguer(new PanelChronometre(getNavigator(),getConfig())));
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);
 
@@ -48,7 +51,7 @@ public class PanelCalendrier extends BasePanel{
         contenu.removeAll();
 
         JPanel zoneTitre= new JPanel(new BorderLayout());
-        zoneTitre.setBackground(bgColor);
+        zoneTitre.setBackground(getBgColor());
 
         JButton btnPrecedent = new JButton("<");
         styleBoutonFleche(btnPrecedent);
@@ -61,7 +64,7 @@ public class PanelCalendrier extends BasePanel{
 
         String nomMois= dateAffichee.getMonth().getDisplayName(TextStyle.FULL,Locale.FRENCH);
         JLabel titre= new JLabel(nomMois.toUpperCase()+ " " + dateAffichee.getYear(),SwingConstants.CENTER);
-        titre.setForeground(Color.WHITE);
+        titre.setForeground(Color.BLACK);
         titre.setFont(new Font("Arial", Font.BOLD,18));
 
         JButton btnSuivant = new JButton(">");
@@ -78,7 +81,7 @@ public class PanelCalendrier extends BasePanel{
         contenu.add(zoneTitre, BorderLayout.NORTH);
 
         JPanel grille = new JPanel(new GridLayout(0,7));
-        grille.setBackground(bgColor);
+        grille.setBackground(getBgColor());
 
         String[] jourSemaine= {"L","Mar","Mer","J","V","S","D"};
         for(String j : jourSemaine){
@@ -99,16 +102,16 @@ public class PanelCalendrier extends BasePanel{
             final int j=jour;
 
             JLabel lblJour = new JLabel(String.valueOf(jour),SwingConstants.CENTER);
-            lblJour.setForeground(Color.WHITE);
+            lblJour.setForeground(Color.BLACK);
             lblJour.setOpaque(true);
-            lblJour.setBackground(bgColor);
+            lblJour.setBackground(getBgColor());
 
             if(jour == JourSelectionne){
-                lblJour.setBorder(new LineBorder(Color.WHITE,1));
+                lblJour.setBorder(new LineBorder(Color.BLACK,1));
             }
 
             if(jour == LocalDate.now().getDayOfMonth() && moisActuel.equals(YearMonth.now())){
-                lblJour.setBackground(Color.GRAY);
+                lblJour.setBackground(Color.DARK_GRAY);
                 lblJour.setFont(lblJour.getFont().deriveFont(Font.BOLD));
             }
 
@@ -131,9 +134,6 @@ public class PanelCalendrier extends BasePanel{
                 }
 
             });
-
-
-
             grille.add(lblJour);
         }
         contenu.add(grille,BorderLayout.CENTER);
@@ -142,8 +142,8 @@ public class PanelCalendrier extends BasePanel{
     }
 
     private void styleBoutonFleche(JButton btn){
-        btn.setForeground(Color.WHITE);
-        btn.setBackground(bgColor);
+        btn.setForeground(Color.BLACK);
+        btn.setBackground(getBgColor());
         btn.setBorderPainted(false);
         btn.setFocusPainted(false);
         btn.setContentAreaFilled(false);

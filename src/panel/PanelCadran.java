@@ -3,8 +3,9 @@ package panel;
 import cadran.Cadran;
 import cadran.CadranAiguilles;
 import cadran.CadranNumerique;
-import xml.XmlReader;
+import config.GestionConfig;
 import model.sante.*;
+import navigation.GestionNavigation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,49 +15,18 @@ public class PanelCadran extends BasePanel {
     private RythmeCardiaque rythme;
     private Batterie batterie;
 
-
-    public PanelCadran(Cadran c,MainFrame mainFrame) {
-        super(mainFrame);
+    public PanelCadran(Cadran c, GestionNavigation navigator, GestionConfig _config) {
+        super(navigator, _config);
         this.cadran = c;
         this.rythme= new RythmeCardiaque();
         this.batterie= new Batterie();
         lancerHorloge();
     }
 
-    /**
-     * Méthode static qui créé un objet de type Cadran en fonction du format contenu dans le XML
-     * Afin de pouvoir retourner le Panel corespondant au format stocké dans le XML
-     * Patron de conception fabrique -> Génère des objets dont on ne connaît pas à l'avance le type.
-     */
-
-    public static PanelCadran createFromConfig(MainFrame mainFrame) {
-        try {
-            //récupère le format de l'horloge dans le xml pour afficher le bon type de cadran.
-            XmlReader xmlReader = new XmlReader("config.xml");
-            String clockFormat = xmlReader.getClockFormat();
-
-            //instanciation du cadran
-            Cadran c;
-            if ("numeric".equals(clockFormat)) {
-                c = new CadranNumerique(400, 400);
-            } else {
-                // Par défaut, utiliser l'horloge à aiguilles (analog)
-                c = new CadranAiguilles(400, 400, 400);
-            }
-            //Retourne le panel final contenant le cadran demandé.
-            return new PanelCadran(c, mainFrame);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // En cas d'erreur, utiliser l'horloge à aiguilles par défaut
-            Cadran c = new CadranAiguilles(400, 400, 400);
-            return new PanelCadran(c, mainFrame);
-        }
-    }
-
     protected void initBoutonsNavigation(){
         // ActionListener
-        btnLeft.addActionListener(e -> mainFrame.changementPanel(new PanelChoixCouleur(mainFrame)));
-        btnRight.addActionListener(e -> mainFrame.changementPanel(new PanelCalendrier(mainFrame)));
+        btnLeft.addActionListener(e -> this.naviguer(new PanelChoixCouleur(getNavigator(),getConfig())));
+        btnRight.addActionListener(e -> this.naviguer(new PanelCalendrier(getNavigator(),getConfig())));
 
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);
@@ -66,7 +36,7 @@ public class PanelCadran extends BasePanel {
             //Redéfinition de classe anonyme de JPanel + surdéfinition de la méthode paintComponent
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                setBackground(bgColor);
+                setBackground(getBgColor());
                 int centreX = getWidth() / 2;
                 int centreY = getHeight() / 2;
                 int radius = Math.min(getWidth(), getHeight()) / 3;
@@ -80,6 +50,40 @@ public class PanelCadran extends BasePanel {
                 cadran.dessiner(g, centreX, centreY);
             }
         };
+    }
+
+    /**
+     * Méthode static qui créé un objet de type Cadran en fonction du format contenu dans le XML
+     * Afin de pouvoir retourner le Panel corespondant au format stocké dans le XML
+     * Patron de conception fabrique -> Génère des objets dont on ne connaît pas à l'avance le type.
+     */
+
+    public static PanelCadran createFromConfig(GestionNavigation navigator, GestionConfig config) {
+        try {
+
+            // Récupérer le format de l'horloge
+            String clockFormat = config.getClockFormat();
+
+            Cadran c;
+            if ("numeric".equals(clockFormat)) {
+                c = new CadranNumerique(400, 400, config);
+            } else {
+                // Par défaut, utiliser l'horloge à aiguilles (analog)
+                c = new CadranAiguilles(400, 400, 400, config);
+            }
+            // Retourne le panel final contenant le cadran demandé
+            return new PanelCadran(c, navigator, config);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // En cas d'erreur, utiliser l'horloge à aiguilles par défaut avec config par défaut
+            try {
+                Cadran c = new CadranAiguilles(400, 400, 400, config);
+                return new PanelCadran(c, navigator, config);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                throw new RuntimeException("Impossible de charger la configuration", ex);
+            }
+        }
     }
 
     private void lancerHorloge(){

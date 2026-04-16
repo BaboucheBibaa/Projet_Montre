@@ -1,8 +1,10 @@
 package model.sante;
+import drawable.Drawable;
+
 import java.awt.*;
 import java.util.Random;
 
-public class RythmeCardiaque {
+public class RythmeCardiaque implements Drawable {
     private int bpm;
     private Random random;
 
@@ -23,7 +25,6 @@ public class RythmeCardiaque {
         g.setColor(Color.RED);
         g.setFont(new Font("Arial",Font.BOLD,14));
         String texte="❤️"+bpm+"BPM";
-        int textWidth = g.getFontMetrics().stringWidth(texte);
 
         g.drawString(texte, 2*x - g.getFontMetrics().stringWidth(texte), 14);
 

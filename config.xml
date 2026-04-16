@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><config>
-    <bg-r>244</bg-r>
-    <bg-g>240</bg-g>
+    <bg-r>164</bg-r>
+    <bg-g>73</bg-g>
     <bg-b>255</bg-b>
-    <policy>MONOSPACED</policy>
-    <clock-format>analog</clock-format>
+    <policy>ARIAL</policy>
+    <clock-format>numeric</clock-format>
     <date-format>24</date-format>
 </config>

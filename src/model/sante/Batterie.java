@@ -1,7 +1,9 @@
 package model.sante;
+import drawable.Drawable;
+
 import java.awt.*;
 
-public class Batterie {
+public class Batterie implements Drawable {
     private int niveau;
 
     public Batterie(){

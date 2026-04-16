@@ -12,6 +12,7 @@ import org.w3c.dom.*;
 
 public class XmlWriter {
 
+    private static XmlWriter instance;
     private File file;
     private Document doc;
 
@@ -34,6 +35,13 @@ public class XmlWriter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static XmlWriter getInstance(String filename){
+        if (instance == null){
+            instance = new XmlWriter(filename);
+        }
+        return instance;
     }
 
     private void setValue(String tag, String value) {
@@ -67,14 +75,10 @@ public class XmlWriter {
     }
 
 
-    public void setR(String r) {
+    public void setRGB(String r, String g, String b) {
         setValue("bg-r", r);
-    }
-    public void setG(String g) {
-        setValue("bg-g", g);
-    }
-    public void setB(String b) {
-        setValue("bg-b", b);
+        setValue("bg-g",g);
+        setValue("bg-b",b);
     }
 
 

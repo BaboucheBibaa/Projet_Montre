@@ -1,5 +1,6 @@
 package cadran;
 
+import config.GestionConfig;
 import model.time.Heure;
 import xml.XmlReader;
 
@@ -10,17 +11,12 @@ public abstract class Cadran {
     protected Heure heure;
     protected int centreX;
     protected int centreY;
-    protected XmlReader reader;
-    public Cadran(int _centreX, int _centreY){
-        heure = new Heure();
+    protected GestionConfig config;
+    public Cadran(int _centreX, int _centreY, GestionConfig _config){
+        config = _config;
+        heure = new Heure(config);
         centreX = _centreX;
         centreY = _centreY;
-        //Lecteur du fichier xml permettant d'afficher la bonne police d'écriture au sein de la montre
-        try{
-            reader = new XmlReader("config.xml");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     public Heure getHeure() {
@@ -48,8 +44,7 @@ public abstract class Cadran {
         String dateStr = today.toString();
         //Lecture du xml pour avoir le format de police correspondant
         try {
-            XmlReader reader = new XmlReader("config.xml");
-            police = reader.getPolicy();
+            police = config.getPolicy();
         } catch (Exception e){
             e.printStackTrace();
         }
