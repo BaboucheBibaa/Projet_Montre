@@ -3,7 +3,8 @@ import java.time.LocalTime;
 
 public class Alarme {
     private int heure;
-    private LocalTime heureActuelle;
+    private int h;
+    private int m;
     private int minute;
     private boolean active;
 
@@ -13,11 +14,10 @@ public class Alarme {
         this.active=false;
     }
 
-    public boolean doitSonner(LocalTime heureActuelle){
+    public boolean doitSonner(int h, int m){
         return active && 
-                heureActuelle.getHour() == heure &&
-                heureActuelle.getMinute() == minute &&
-                heureActuelle.getSecond() == 0;
+                (this.heure == h)  &&
+                (this.minute == m) ;
     }
 
 

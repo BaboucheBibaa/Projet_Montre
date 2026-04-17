@@ -81,37 +81,34 @@ public class XmlReader {
         return doc.getElementsByTagName("date-format").item(0).getTextContent();
     }
 
-    public int getAlarmeHeure(){
+    private String getTagValue(String tag, String defaultValue){
         try{
             recharger();
-        }catch (Exception e){}
-
-        NodeList list = doc.getElementsByTagName("alarme-h");
-        return (list.getLength() >0) ? Integer.parseInt(list.item(0).getTextContent()) : 0;
-    }
-
-    public int getAlarmeMinute(){
-        try{
-            recharger();
-        }catch (Exception e){}
-
-        NodeList list = doc.getElementsByTagName("alarme-m");
-        return (list.getLength() >0) ? Integer.parseInt(list.item(0).getTextContent()) : 0;
-    }
-
-
-    public boolean isAlarmeActive(){
-        try{
-            recharger();
-            NodeList list = doc.getElementsByTagName("alarme-active");
-            if(list.getLength()>0 && list.item(0).getTextContent() != null){
-                String val = list.item(0).getTextContent().trim();
-                return Boolean.parseBoolean(val);
+            if(doc != null){
+                NodeList list= doc.getElementsByTagName(tag);
+                if(list.getLength() >0){
+                    return list.item(0).getTextContent();
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-
-        return false;
+        return defaultValue;
     }
+
+    public int getAlarmeHeure(){
+        return Integer.parseInt(getTagValue("alarme-h", "8"));
+    }
+
+    public int getAlarmeMinute(){
+        return Integer.parseInt(getTagValue("alarme-m", "0"));
+    }
+
+
+    public boolean isAlarmeActive(){
+        return Boolean.parseBoolean(getTagValue("alarme-active", "false"));
+          
+    }
+
+
 }

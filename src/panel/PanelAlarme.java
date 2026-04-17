@@ -25,17 +25,12 @@ public class PanelAlarme extends BasePanel {
         System.out.println(alarme);
     }
 
-    protected void initBoutonsNavigation(){
-        btnLeft.addActionListener(e-> this.naviguer(new PanelChronometre(getNavigator(), getConfig())));
-        btnRight.addActionListener(e-> this.naviguer(new PanelParametrage(getNavigator(), getConfig())));
-        this.add(btnLeft,BorderLayout.WEST);
-        this.add(btnRight, BorderLayout.EAST);       
-    }
+    
 
     protected void initContenuPanel(){
         panelContenu = new JPanel(new GridLayout(4,1,10,10)); // creer un panel ayant une grille de 4 ligne et 1 colonne
         panelContenu.setBackground(getBgColor());
-
+        this.alarme= this.getAlarme();
         // JSpinner permet de choisir un nombre avec les flèches haut et bas
 
         JSpinner spinnerHeure = new JSpinner(new SpinnerNumberModel(alarme.getHeure(), 0, 23, 1));
@@ -70,5 +65,11 @@ public class PanelAlarme extends BasePanel {
 
     }
 
+    protected void initBoutonsNavigation(){
+            btnLeft.addActionListener(e-> this.naviguer(new PanelChronometre(getNavigator(), getConfig())));
+            btnRight.addActionListener(e-> this.naviguer(new PanelParametrage(getNavigator(), getConfig())));
+            this.add(btnLeft,BorderLayout.WEST);
+            this.add(btnRight, BorderLayout.EAST);       
+        }
 
 }
