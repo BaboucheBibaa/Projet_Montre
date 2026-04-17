@@ -1,6 +1,8 @@
 package xml;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
@@ -77,5 +79,39 @@ public class XmlReader {
             e.printStackTrace();
         }
         return doc.getElementsByTagName("date-format").item(0).getTextContent();
+    }
+
+    public int getAlarmeHeure(){
+        try{
+            recharger();
+        }catch (Exception e){}
+
+        NodeList list = doc.getElementsByTagName("alarme-h");
+        return (list.getLength() >0) ? Integer.parseInt(list.item(0).getTextContent()) : 0;
+    }
+
+    public int getAlarmeMinute(){
+        try{
+            recharger();
+        }catch (Exception e){}
+
+        NodeList list = doc.getElementsByTagName("alarme-m");
+        return (list.getLength() >0) ? Integer.parseInt(list.item(0).getTextContent()) : 0;
+    }
+
+
+    public boolean isAlarmeActive(){
+        try{
+            recharger();
+            NodeList list = doc.getElementsByTagName("alarme-active");
+            if(list.getLength()>0 && list.item(0).getTextContent() != null){
+                String val = list.item(0).getTextContent().trim();
+                return Boolean.parseBoolean(val);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

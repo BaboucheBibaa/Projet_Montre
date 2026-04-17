@@ -5,6 +5,8 @@ import xml.XmlWriter;
 
 import java.awt.*;
 
+import model.time.Alarme;
+
 public class XMLConfig implements GestionConfig {
     private XmlReader reader;
     private XmlWriter writer;
@@ -35,6 +37,18 @@ public class XMLConfig implements GestionConfig {
     }
     public void setRGB(String r, String g, String b){
         writer.setRGB(r,g,b);
+    }
+
+    public Alarme getAlarme(){
+        Alarme a = new Alarme();
+        a.setHeure(reader.getAlarmeHeure());
+        a.setMinute(reader.getAlarmeMinute());
+        a.setActive(reader.isAlarmeActive());
+        return a;
+    }
+
+    public void saveAlarme(Alarme a){
+        writer.setAlarme(a.getHeure(),a.getMinute(), a.isActive());
     }
 
 }

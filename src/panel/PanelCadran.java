@@ -88,7 +88,12 @@ public class PanelCadran extends BasePanel {
 
     private void lancerHorloge(){
         //timer de rafraîchissement toutes les secondes
-        Timer timer = new Timer(1000, e -> {cadran.setHeure(); panelContenu.repaint();});
+        Timer timer = new Timer(1000, e -> {
+            cadran.setHeure();
+            
+           // if(mon){}
+            
+            panelContenu.repaint();});
         timer.start();
     }
 }
