@@ -93,4 +93,10 @@ public class XmlWriter {
     public void setDateFormat(String dateFormat) {
         setValue("date-format", dateFormat);
     }
+
+    public void setAlarme(int h , int m , boolean active){
+        setValue("alarme-h", String.valueOf(h));
+        setValue("alarme-m", String.valueOf(m));
+        setValue("alarme-active", String.valueOf(active));
+    }
 }

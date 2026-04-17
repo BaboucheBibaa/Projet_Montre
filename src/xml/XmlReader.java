@@ -1,6 +1,8 @@
 package xml;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
@@ -78,4 +80,35 @@ public class XmlReader {
         }
         return doc.getElementsByTagName("date-format").item(0).getTextContent();
     }
+
+    private String getTagValue(String tag, String defaultValue){
+        try{
+            recharger();
+            if(doc != null){
+                NodeList list= doc.getElementsByTagName(tag);
+                if(list.getLength() >0){
+                    return list.item(0).getTextContent();
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return defaultValue;
+    }
+
+    public int getAlarmeHeure(){
+        return Integer.parseInt(getTagValue("alarme-h", "8"));
+    }
+
+    public int getAlarmeMinute(){
+        return Integer.parseInt(getTagValue("alarme-m", "0"));
+    }
+
+
+    public boolean isAlarmeActive(){
+        return Boolean.parseBoolean(getTagValue("alarme-active", "false"));
+          
+    }
+
+
 }

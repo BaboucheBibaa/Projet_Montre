@@ -21,7 +21,14 @@ public class PanelChronometre extends BasePanel{
             if (timerRefresh != null) timerRefresh.stop();
             this.naviguer(new PanelCalendrier(getNavigator(),getConfig()));
         });
+
+        btnRight.addActionListener(e -> {
+            if (timerRefresh != null) timerRefresh.stop();
+            this.naviguer(new PanelAlarme(getNavigator(),getConfig()));
+        });
+
         this.add(btnLeft, BorderLayout.WEST);
+        this.add(btnRight, BorderLayout.EAST);
     }
 
     public void initContenuPanel(){

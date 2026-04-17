@@ -4,6 +4,7 @@ import cadran.Cadran;
 import cadran.CadranAiguilles;
 import cadran.CadranNumerique;
 import config.GestionConfig;
+import config.XMLConfig;
 import model.sante.*;
 import navigation.GestionNavigation;
 
@@ -88,7 +89,30 @@ public class PanelCadran extends BasePanel {
 
     private void lancerHorloge(){
         //timer de rafraîchissement toutes les secondes
-        Timer timer = new Timer(1000, e -> {cadran.setHeure(); panelContenu.repaint();});
+        Timer timer = new Timer(1000, e -> {
+            cadran.setHeure();
+            
+            if(getConfig() instanceof XMLConfig){
+                model.time.Alarme alarme = ((XMLConfig)getConfig()).getAlarme();
+                java.time.LocalTime maintenant= java.time.LocalTime.now();
+
+                if(maintenant.getSecond() == 0 && alarme.doitSonner(maintenant.getHour(),maintenant.getMinute())){
+                    declencherAlarme();
+                }
+
+
+                /*if(alarme.doitSonner(cadran.getHeure().getHeure())){
+                    JOptionPane.showMessageDialog(this,"ALERT : Il est "+ alerme.getHeure()+"h"+ alarme.getMinute(), "Réveil", JOptionPane.WARNING_MESSAGE);
+                }*/
+            }
+            
+            panelContenu.repaint();});
         timer.start();
+    }
+
+
+    private void declencherAlarme(){
+        java.awt.Toolkit.getDefaultToolkit().beep();
+        JOptionPane.showMessageDialog(this,"C'est l'heure"+ java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")),"ALARME", JOptionPane.WARNING_MESSAGE);
     }
 }

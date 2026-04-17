@@ -3,6 +3,8 @@ package panel;
 import config.GestionConfig;
 import navigation.GestionNavigation;
 
+import model.time.Alarme;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -82,4 +84,7 @@ public abstract class BasePanel extends JPanel{
     protected void naviguer(BasePanel newPanel) {
         navigator.naviguer(newPanel);
     }
+
+    protected Alarme getAlarme(){return config.getAlarme();}
+    public void saveAlarme(Alarme a){config.saveAlarme(a);}
 }
