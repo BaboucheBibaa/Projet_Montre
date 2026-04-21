@@ -26,8 +26,8 @@ public class PanelCadran extends BasePanel {
 
     protected void initBoutonsNavigation(){
         // ActionListener
-        btnLeft.addActionListener(e -> this.naviguer(new PanelChoixCouleur(getNavigator(),getConfig())));
-        btnRight.addActionListener(e -> this.naviguer(new PanelCalendrier(getNavigator(),getConfig())));
+        btnLeft.addActionListener(_ -> this.naviguer(new PanelChoixCouleur(getNavigator(),getConfig())));
+        btnRight.addActionListener(_ -> this.naviguer(new PanelCalendrier(getNavigator(),getConfig())));
 
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);

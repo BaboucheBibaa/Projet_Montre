@@ -13,14 +13,6 @@ public class PanelAlarme extends BasePanel {
 
     public PanelAlarme(GestionNavigation navigator , GestionConfig _config){
         super(navigator, _config); // on les appellepr initialiser la navig
-        /*if(getConfig() instanceof XMLConfig){ // on vérifie si la cinfig reçue est bien de type XMLConfig
-            this.alarme=((XMLConfig) getConfig()).getAlarme(); // si on on récup l'alarme dans le fichier XML
-            System.out.println("Test");
-        }else{
-            this.alarme= new Alarme();
-            System.out.println("8h");
-        }
-        System.out.println("9h");*/
     }
 
     
@@ -52,8 +44,6 @@ public class PanelAlarme extends BasePanel {
         pTime.add(new JLabel("Min :"));
         pTime.add(spinnerMin);
 
-        //panelContenu.add(new JLabel("Heure (0-23) : ", SwingConstants.CENTER));
-        //panelContenu.add(spinnerHeure);
         panelContenu.add(pTime);
         panelContenu.add(checkactive);
         panelContenu.add(btnSauver);
