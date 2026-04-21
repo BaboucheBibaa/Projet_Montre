@@ -40,17 +40,33 @@ public class PanelCadran extends BasePanel {
                 setBackground(getBgColor());
                 int centreX = getWidth() / 2;
                 int centreY = getHeight() / 2;
-                int radius = Math.min(getWidth(), getHeight()) / 3;
-                rythme.dessiner(g, centreX, centreY+60);
-                batterie.dessiner(g, 0, 0);
+                //int radius = Math.min(getWidth(), getHeight()) / 3;
+                
 
-                cadran.setCentre(centreX, centreY);
+              /*   cadran.setCentre(centreX, centreY);
                 if (cadran instanceof CadranAiguilles ca) {
                     ca.setRadius(radius);
+                }*/
+
+        
+
+                int size = Math.min(getWidth(), getHeight()) - 60 ;
+                int demi= size/2;
+
+                
+
+                cadran.setCentre(centreX, centreY);
+
+                if(cadran instanceof CadranAiguilles ca){
+                    ca.setRadius(demi - 60);
                 }
+
+                batterie.dessiner(g, centreX -20, centreY-demi +20);
+                rythme.dessiner(g, centreX,  centreY+demi-40);
                 cadran.dessiner(g, centreX, centreY);
             }
         };
+        panelContenu.setOpaque(false);
     }
 
     /**
@@ -115,4 +131,7 @@ public class PanelCadran extends BasePanel {
         java.awt.Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(this,"C'est l'heure"+ java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")),"ALARME", JOptionPane.WARNING_MESSAGE);
     }
+
+
+    
 }

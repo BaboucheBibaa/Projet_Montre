@@ -1,6 +1,7 @@
 package panel;
 
 import config.GestionConfig;
+import config.XMLConfig;
 import navigation.GestionNavigation;
 
 import javax.swing.*;
@@ -26,14 +27,26 @@ public class PanelParametrage extends BasePanel {
         String[] typeAffiche = {"Horloge à Aiguilles", "Horloge Numérique"};
         String[] policeAffiche = {"Monospaced", "Arial", "Sans Sérif"};
         String[] dateAffiche = {"12 Heures", "24 Heures"};
+        String[] FormeAffiche = {"Rond", "Carré"};
 
         String[] type = {"analog", "numeric"};
         String[] police = {"MONOSPACED", "ARIAL", "SANS_SERIF"};
         String[] formatDate = {"12", "24"};
+        String[] formeValeur = {"rond","carre"};
 
         JComboBox<String> comboType = new JComboBox<>(typeAffiche);
         JComboBox<String> comboPolice = new JComboBox<>(policeAffiche);
         JComboBox<String> comboFormatDate = new JComboBox<>(dateAffiche);
+        JComboBox<String> comboForme = new JComboBox<>(FormeAffiche);
+
+        String FormeActuelle = ((XMLConfig)getConfig()).getFormeBoitier();
+        comboForme.setSelectedIndex(FormeActuelle.equals("carre") ? 1 : 0);
+
+        comboForme.addActionListener(e->{
+            String nouvelleForme = formeValeur[comboForme.getSelectedIndex()];
+            ((XMLConfig)getConfig()).setFormeBoitier(nouvelleForme);
+        });
+
 
         // Sélectionner les valeurs par défaut selon l'indice
         int indexType = -1;
@@ -116,6 +129,8 @@ public class PanelParametrage extends BasePanel {
         panelContenu.add(Box.createVerticalStrut(30));
         panelContenu.add(comboFormatDate);
         panelContenu.add(Box.createVerticalGlue());
+        panelContenu.add(new JLabel("Forme du boitier : "));
+        panelContenu.add(comboForme);
 
         this.add(panelContenu, BorderLayout.CENTER);
     }

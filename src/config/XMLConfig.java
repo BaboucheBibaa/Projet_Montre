@@ -51,4 +51,15 @@ public class XMLConfig implements GestionConfig {
         writer.setAlarme(a.getHeure(),a.getMinute(), a.isActive());
     }
 
+    //@Override
+    public String getFormeBoitier(){
+        return reader.getTagValue("forme","rond");
+    }
+
+
+    //@Override
+    public void setFormeBoitier(String forme){
+        writer.setFormeBoitier(forme);
+    }
+
 }

@@ -26,7 +26,8 @@ public class RythmeCardiaque implements Drawable {
         g.setFont(new Font("Arial",Font.BOLD,14));
         String texte="❤️"+bpm+"BPM";
 
-        g.drawString(texte, 2*x - g.getFontMetrics().stringWidth(texte), 14);
-
+        //g.drawString(texte, 2*x - g.getFontMetrics().stringWidth(texte), 14);
+        int textWidth = g.getFontMetrics().stringWidth(texte);
+        g.drawString(texte, x - (textWidth/2) , y);
     }
 }

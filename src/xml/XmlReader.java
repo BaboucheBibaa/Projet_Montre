@@ -81,7 +81,7 @@ public class XmlReader {
         return doc.getElementsByTagName("date-format").item(0).getTextContent();
     }
 
-    private String getTagValue(String tag, String defaultValue){
+    public String getTagValue(String tag, String defaultValue){
         try{
             recharger();
             if(doc != null){

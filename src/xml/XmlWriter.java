@@ -99,4 +99,8 @@ public class XmlWriter {
         setValue("alarme-m", String.valueOf(m));
         setValue("alarme-active", String.valueOf(active));
     }
+    
+    public void setFormeBoitier(String forme){
+        setValue("forme", forme);
+    }
 }

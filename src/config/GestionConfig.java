@@ -16,4 +16,6 @@ public interface GestionConfig {
 
     public Alarme getAlarme();
     public void saveAlarme(Alarme a);
+    String getFormeBoitier();
+    void setFormeBoitier(String forme);
 }

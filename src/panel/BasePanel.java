@@ -1,11 +1,14 @@
 package panel;
 
 import config.GestionConfig;
+import config.XMLConfig;
 import navigation.GestionNavigation;
 
 import model.time.Alarme;
 
 import javax.swing.*;
+
+import cadran.CadranAiguilles;
 import java.awt.*;
 
 
@@ -87,4 +90,39 @@ public abstract class BasePanel extends JPanel{
 
     protected Alarme getAlarme(){return config.getAlarme();}
     public void saveAlarme(Alarme a){config.saveAlarme(a);}
+
+    @Override
+    protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                
+                setBackground(config.getBackgroundColor());
+                int centreX = getWidth() / 2;
+                int centreY = getHeight() / 2;
+                //int radius = Math.min(getWidth(), getHeight()) / 3;
+                
+
+              /*   cadran.setCentre(centreX, centreY);
+                if (cadran instanceof CadranAiguilles ca) {
+                    ca.setRadius(radius);
+                }*/
+
+                g.setColor(Color.BLACK);
+                String forme = getConfig().getFormeBoitier();
+
+                //int cx = getWidth() / 2 ;
+                //int cy = getHeight() / 2 ;
+                int size = Math.min(getWidth(), getHeight()) - 60 ;
+                int demi= size/2;
+
+                if("carre".equals(forme)){
+                    g.drawRect(centreX - demi, centreY - demi,size , size);
+                }else{
+                    g.drawOval(centreX - demi, centreY - demi,size , size);
+                }
+
+                
+    }
+
+    
+    
 }
