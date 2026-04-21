@@ -41,11 +41,8 @@ public class PanelAlarme extends BasePanel {
             alarme.setHeure((int)spinnerHeure.getValue());
             alarme.setMinute((int)spinnerMin.getValue());
             alarme.setActive(checkactive.isSelected());
-
-            if(getConfig() instanceof XMLConfig){
-                getConfig().saveAlarme(alarme);
-                JOptionPane.showMessageDialog(this, "Alarme Enregistrée !"); //Affiche fenetre de confirmation
-            }
+            getConfig().saveAlarme(alarme);
+            JOptionPane.showMessageDialog(this, "Alarme Enregistrée !"); //Affiche fenetre de confirmation
         });
 
         JPanel pTime = new JPanel();
