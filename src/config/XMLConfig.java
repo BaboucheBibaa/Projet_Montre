@@ -14,8 +14,9 @@ public class XMLConfig implements GestionConfig {
         this.reader = new XmlReader(filename);
         this.writer = new XmlWriter(filename);
     }
-    public String getDateFormat(){
-        return reader.getDateFormat();
+    public String getDateFormat(){ return reader.getDateFormat();}
+    public String getHeureFormat(){
+        return reader.getHeureFormat();
     }
     public String getClockFormat(){
         return reader.getClockFormat();
@@ -26,8 +27,11 @@ public class XMLConfig implements GestionConfig {
     public Color getBackgroundColor() {
         return new Color(reader.getR(), reader.getG(), reader.getB());
     }
-    public void setDateFormat(String format){
-        writer.setDateFormat(format);
+    public void setHeureFormat(String format){
+        writer.setHeureFormat(format);
+    }
+    public void setDateFormat(String date){
+        writer.setDateFormat(date);
     }
     public void setClockFormat(String format){
         writer.setClockFormat(format);

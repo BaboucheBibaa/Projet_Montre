@@ -21,8 +21,6 @@ public class PanelAlarme extends BasePanel {
             System.out.println("8h");
         }
         System.out.println("9h");*/
-        alarme= this.getAlarme();
-        System.out.println(alarme);
     }
 
     
@@ -45,7 +43,7 @@ public class PanelAlarme extends BasePanel {
             alarme.setActive(checkactive.isSelected());
 
             if(getConfig() instanceof XMLConfig){
-                ((XMLConfig)getConfig()).saveAlarme(alarme);
+                getConfig().saveAlarme(alarme);
                 JOptionPane.showMessageDialog(this, "Alarme Enregistrée !"); //Affiche fenetre de confirmation
             }
         });
@@ -67,9 +65,7 @@ public class PanelAlarme extends BasePanel {
 
     protected void initBoutonsNavigation(){
             btnLeft.addActionListener(e-> this.naviguer(new PanelChronometre(getNavigator(), getConfig())));
-            btnRight.addActionListener(e-> this.naviguer(new PanelParametrage(getNavigator(), getConfig())));
             this.add(btnLeft,BorderLayout.WEST);
-            this.add(btnRight, BorderLayout.EAST);       
         }
 
 }

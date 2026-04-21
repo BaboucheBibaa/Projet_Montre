@@ -21,19 +21,23 @@ public class PanelParametrage extends BasePanel {
 
         String typeActuel = getClockFormat();
         String policeActuelle = getPolicy();
-        String dateFormatActuel = getDateFormat();
+        String formatHeureActuelle = getHeureFormat();
+        String formatDateActuelle = getDateFormat();
 
         String[] typeAffiche = {"Horloge à Aiguilles", "Horloge Numérique"};
         String[] policeAffiche = {"Monospaced", "Arial", "Sans Sérif"};
-        String[] dateAffiche = {"12 Heures", "24 Heures"};
+        String[] formatHeureAffichee = {"12 Heures", "24 Heures"};
+        String[] formatDateAffichee = {"Jour-Mois-Annee", "Annee-Mois-Jour","Mois-Jour-Annee"};
 
         String[] type = {"analog", "numeric"};
         String[] police = {"MONOSPACED", "ARIAL", "SANS_SERIF"};
-        String[] formatDate = {"12", "24"};
+        String[] formatHeure = {"12", "24"};
+        String[] formatDate = {"dd-MM-yyyy","yyyy-MM-dd","MM-dd-yyyy"};
 
         JComboBox<String> comboType = new JComboBox<>(typeAffiche);
         JComboBox<String> comboPolice = new JComboBox<>(policeAffiche);
-        JComboBox<String> comboFormatDate = new JComboBox<>(dateAffiche);
+        JComboBox<String> comboFormatHeure = new JComboBox<>(formatHeureAffichee);
+        JComboBox<String> comboFormatDate = new JComboBox<>(formatDateAffichee);
 
         // Sélectionner les valeurs par défaut selon l'indice
         int indexType = -1;
@@ -58,26 +62,41 @@ public class PanelParametrage extends BasePanel {
             comboPolice.setSelectedIndex(indexPolice);
         }
 
+        int indexFormatHeure = -1;
+        for (int i = 0; i < formatHeure.length; i++) {
+            if (formatHeure[i].equals(formatHeureActuelle)) {
+                indexFormatHeure = i;
+                break;
+            }
+        }
+        if (indexFormatHeure >= 0) {
+            comboFormatHeure.setSelectedIndex(indexFormatHeure);
+        }
+
         int indexFormatDate = -1;
-        for (int i = 0; i < formatDate.length; i++) {
-            if (formatDate[i].equals(dateFormatActuel)) {
+        for (int i = 0; i < formatDate.length; i++){
+            if (formatDate[i].equals(formatDateActuelle)){
                 indexFormatDate = i;
                 break;
             }
         }
-        if (indexFormatDate >= 0) {
+        if (indexFormatDate >=0){
             comboFormatDate.setSelectedIndex(indexFormatDate);
         }
 
+
         JLabel labelPolice = new JLabel("Police d'écriture");
         JLabel labelHorloge = new JLabel("Format de l'Horloge");
-        JLabel labelFormatDate = new JLabel("Format d'affichage de l'heure");
+        JLabel labelFormatHeure = new JLabel("Format d'affichage de l'heure");
+        JLabel labelFormatDate = new JLabel("Format d'affichage de la date");
 
         labelPolice.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelHorloge.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelFormatHeure.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelFormatDate.setAlignmentX(Component.CENTER_ALIGNMENT);
         comboType.setAlignmentX(Component.CENTER_ALIGNMENT);
         comboPolice.setAlignmentX(Component.CENTER_ALIGNMENT);
+        comboFormatHeure.setAlignmentX(Component.CENTER_ALIGNMENT);
         comboFormatDate.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Ajouter un ActionListener pour écrire dans le xml
@@ -95,6 +114,14 @@ public class PanelParametrage extends BasePanel {
                 setPolicy(valueToSave);
             }
         });
+        comboFormatHeure.addActionListener(e -> {
+            int index = comboFormatHeure.getSelectedIndex();
+            if (index >= 0 && index < formatHeure.length) {
+                String valueToSave = formatHeure[index];
+                setHeureFormat(valueToSave);
+            }
+        });
+
         comboFormatDate.addActionListener(e -> {
             int index = comboFormatDate.getSelectedIndex();
             if (index >= 0 && index < formatDate.length) {
@@ -112,10 +139,13 @@ public class PanelParametrage extends BasePanel {
         panelContenu.add(Box.createVerticalStrut(30));
         panelContenu.add(comboPolice);
         panelContenu.add(Box.createVerticalGlue());
+        panelContenu.add(labelFormatHeure);
+        panelContenu.add(Box.createVerticalStrut(30));
+        panelContenu.add(comboFormatHeure);
+        panelContenu.add(Box.createVerticalGlue());
         panelContenu.add(labelFormatDate);
         panelContenu.add(Box.createVerticalStrut(30));
         panelContenu.add(comboFormatDate);
-        panelContenu.add(Box.createVerticalGlue());
 
         this.add(panelContenu, BorderLayout.CENTER);
     }

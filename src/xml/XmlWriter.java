@@ -90,8 +90,11 @@ public class XmlWriter {
         setValue("clock-format", clockFormat);
     }
 
-    public void setDateFormat(String dateFormat) {
-        setValue("date-format", dateFormat);
+    public void setHeureFormat(String heureFormat) {
+        setValue("heure-format", heureFormat);
+    }
+    public void setDateFormat(String dateFormat){
+        setValue("date-format",dateFormat);
     }
 
     public void setAlarme(int h , int m , boolean active){

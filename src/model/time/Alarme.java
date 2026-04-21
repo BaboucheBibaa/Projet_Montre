@@ -1,10 +1,7 @@
 package model.time;
-import java.time.LocalTime;
 
 public class Alarme {
     private int heure;
-    private int h;
-    private int m;
     private int minute;
     private boolean active;
 
@@ -19,8 +16,6 @@ public class Alarme {
                 (this.heure == h)  &&
                 (this.minute == m) ;
     }
-
-
 
     public int getHeure(){return heure;}
     public void setHeure(int h){this.heure=h;}

@@ -4,8 +4,9 @@
     <bg-b>146</bg-b>
     <policy>ARIAL</policy>
     <clock-format>numeric</clock-format>
-    <date-format>24</date-format>
-    <alarme-h>13</alarme-h>
+    <heure-format>24</heure-format>
+    <date-format>dd-MM-yyyy</date-format>
+    <alarme-h>14</alarme-h>
     <alarme-m>27</alarme-m>
     <alarme-active>true</alarme-active>
 </config>

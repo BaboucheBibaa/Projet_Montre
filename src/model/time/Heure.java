@@ -3,29 +3,13 @@ package model.time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import config.GestionConfig;
-
 public class Heure {
     private LocalTime heure;
     private DateTimeFormatter formatter;
-    private GestionConfig config;
-    public Heure(GestionConfig _config){
+    public Heure(DateTimeFormatter _formatter) {
         heure = LocalTime.now();
-        config = _config;
-        try {
-            String dateFormat = config.getDateFormat();
-
-            if("12".equals(dateFormat)){
-                formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
-            } else {
-                formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-            }
-        } catch(Exception e){
-            // En cas d'erreur, utiliser le format 24h par défaut
-            formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        }
+        formatter = _formatter;
     }
-
 
     public LocalTime getHeure() {
         return heure;

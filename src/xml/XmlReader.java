@@ -72,10 +72,19 @@ public class XmlReader {
         return doc.getElementsByTagName("clock-format").item(0).getTextContent();
     }
 
-    public String getDateFormat() {
+    public String getHeureFormat() {
         try {
             recharger();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return doc.getElementsByTagName("heure-format").item(0).getTextContent();
+    }
+
+    public String getDateFormat(){
+        try {
+            recharger();
+        } catch (Exception e){
             e.printStackTrace();
         }
         return doc.getElementsByTagName("date-format").item(0).getTextContent();

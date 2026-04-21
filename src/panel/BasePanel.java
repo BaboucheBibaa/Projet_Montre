@@ -46,7 +46,10 @@ public abstract class BasePanel extends JPanel{
         return bgColor;
     }
 
-    protected String getDateFormat() {
+    protected String getHeureFormat() {
+        return config.getHeureFormat();
+    }
+    protected String getDateFormat(){
         return config.getDateFormat();
     }
 
@@ -58,10 +61,11 @@ public abstract class BasePanel extends JPanel{
         return config.getPolicy();
     }
 
-    protected void setDateFormat(String format) {
-        config.setDateFormat(format);
+    protected void setHeureFormat(String format) {
+        config.setHeureFormat(format);
     }
 
+    protected void setDateFormat(String format){ config.setDateFormat(format);}
     protected void setClockFormat(String format) {
         config.setClockFormat(format);
     }
