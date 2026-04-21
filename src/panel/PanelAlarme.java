@@ -1,22 +1,20 @@
 package panel;
 
 import config.GestionConfig;
-import config.XMLConfig;
 import model.time.Alarme;
 import navigation.GestionNavigation;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * Fenêtre permettant de gérer l'affichage et la configuration d'une alarme au sein de la montre.
+ * */
 public class PanelAlarme extends BasePanel {
     private Alarme alarme;
 
-    public PanelAlarme(GestionNavigation navigator , GestionConfig _config){
-        super(navigator, _config); // on les appellepr initialiser la navig
+    public PanelAlarme(GestionNavigation navigator, GestionConfig _config, PanelProvider provider) {
+        super(navigator, _config, provider);
     }
-
-    
-
     protected void initContenuPanel(){
         panelContenu = new JPanel(new GridLayout(4,1,10,10)); // creer un panel ayant une grille de 4 ligne et 1 colonne
         panelContenu.setBackground(getBgColor());
@@ -28,12 +26,12 @@ public class PanelAlarme extends BasePanel {
         JCheckBox checkactive= new JCheckBox("Alarme Activée", alarme.isActive());
         JButton btnSauver = new JButton("Sauvegarder");
 
-        btnSauver.addActionListener(e ->{
+        btnSauver.addActionListener(_ ->{
             //met à jour l'alarme avec les new valeurs
             alarme.setHeure((int)spinnerHeure.getValue());
             alarme.setMinute((int)spinnerMin.getValue());
             alarme.setActive(checkactive.isSelected());
-            getConfig().saveAlarme(alarme);
+            saveAlarme(alarme);
             JOptionPane.showMessageDialog(this, "Alarme Enregistrée !"); //Affiche fenetre de confirmation
         });
 
@@ -49,10 +47,9 @@ public class PanelAlarme extends BasePanel {
         panelContenu.add(btnSauver);
 
     }
-
-    protected void initBoutonsNavigation(){
-            btnLeft.addActionListener(e-> this.naviguer(new PanelChronometre(getNavigator(), getConfig())));
-            this.add(btnLeft,BorderLayout.WEST);
-        }
+    protected void initBoutonsNavigation() {
+        btnLeft.addActionListener(_ -> allerVersChronometre());
+        this.add(btnLeft, BorderLayout.WEST);
+    }
 
 }

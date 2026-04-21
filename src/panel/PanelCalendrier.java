@@ -15,12 +15,16 @@ import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
+
+/**
+ * Panel permettant d'afficher les données nécessaires afin d'avoir un calendrier fonctionnel.
+ * */
 public class PanelCalendrier extends BasePanel{
     private LocalDate dateAffichee;
     private int JourSelectionne = -1;
 
-    public PanelCalendrier(GestionNavigation navigator, GestionConfig _config){
-        super(navigator,_config);
+    public PanelCalendrier(GestionNavigation navigator, GestionConfig _config, PanelProvider provider) {
+        super(navigator, _config, provider);
         this.dateAffichee=LocalDate.now();
 
         if(this.getPanelContenu() != null){
@@ -29,21 +33,17 @@ public class PanelCalendrier extends BasePanel{
         }
         remplirCalendrier();
     }
-
     protected void initContenuPanel(){
         if(this.panelContenu == null){
             this.panelContenu= new JPanel();
         }
     }
-
-    protected void initBoutonsNavigation(){
-        btnLeft.addActionListener(e -> this.naviguer(PanelCadran.createFromConfig(getNavigator(),getConfig())));
-        btnRight.addActionListener(e -> this.naviguer(new PanelChronometre(getNavigator(),getConfig())));
+    protected void initBoutonsNavigation() {
+        btnLeft.addActionListener(_ -> allerVersCadran());
+        btnRight.addActionListener(_ -> allerVersChronometre());
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);
-
     }
-
     public void remplirCalendrier(){
         JPanel contenu = this.getPanelContenu();
         if(contenu == null){return;}
@@ -55,7 +55,7 @@ public class PanelCalendrier extends BasePanel{
 
         JButton btnPrecedent = new JButton("<");
         styleBoutonFleche(btnPrecedent);
-        btnPrecedent.addActionListener(e ->{
+        btnPrecedent.addActionListener(_ ->{
             dateAffichee= dateAffichee.minusMonths(1);
             remplirCalendrier();
         });
@@ -69,7 +69,7 @@ public class PanelCalendrier extends BasePanel{
 
         JButton btnSuivant = new JButton(">");
         styleBoutonFleche(btnSuivant);
-        btnSuivant.addActionListener(e ->{
+        btnSuivant.addActionListener(_ ->{
             dateAffichee= dateAffichee.plusMonths(1);
             remplirCalendrier();
         });
@@ -140,7 +140,6 @@ public class PanelCalendrier extends BasePanel{
         contenu.revalidate();
         contenu.repaint();
     }
-
     private void styleBoutonFleche(JButton btn){
         btn.setForeground(Color.BLACK);
         btn.setBackground(getBgColor());

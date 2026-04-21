@@ -10,9 +10,10 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.*;
 
+/**
+ * Classe permettant d'écrire dans un fichier XML
+ * */
 public class XmlWriter {
-
-    private static XmlWriter instance;
     private File file;
     private Document doc;
 
@@ -35,13 +36,6 @@ public class XmlWriter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static XmlWriter getInstance(String filename){
-        if (instance == null){
-            instance = new XmlWriter(filename);
-        }
-        return instance;
     }
 
     private void setValue(String tag, String value) {

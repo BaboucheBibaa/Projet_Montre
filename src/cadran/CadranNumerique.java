@@ -7,10 +7,17 @@ import java.awt.Graphics;
 import java.awt.FontMetrics;
 import java.awt.Font;
 
+/**
+ * Classe héritant de Cadran qui permet de dessiner au sein d'une JPanel un cadran d'horloge numérique.
+ * */
 public class CadranNumerique extends Cadran implements Drawable {
     public CadranNumerique(int _centreX, int _centreY, GestionConfig _config){
         super(_centreX,_centreY, _config);
     }
+
+    /*
+    * Permet de dessiner le cadran numérique sur le panel qui l'appellera.
+    * */
     public void dessiner(Graphics g, int centreX, int centreY){
         String temps = this.getTemps();
         dessinerJour(g,centreX,centreY);

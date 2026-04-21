@@ -3,10 +3,14 @@ import drawable.Drawable;
 
 import java.awt.*;
 import java.util.Random;
+/**
+ * Classe permettant de gérer le fonctionnement d'un rythme cardiaque fictif au sein de la montre ainsi que de le dessiner sur un JPanel
+ * Via l'implémentation de l'interface Drawable
+ * */
 
 public class RythmeCardiaque implements Drawable {
     private int bpm;
-    private Random random;
+    private final Random random;
 
     public  RythmeCardiaque(){
         this.bpm=75;

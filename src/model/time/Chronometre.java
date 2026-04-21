@@ -1,5 +1,9 @@
 package model.time;
 
+
+/**
+ * Classe permettant de stocker les données nécessaires au bon fonctionnement d'un chronomètre au sein de la montre.
+ * */
 public class Chronometre {
     private long debut;
     private long fin;

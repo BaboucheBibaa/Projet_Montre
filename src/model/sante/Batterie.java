@@ -3,6 +3,10 @@ import drawable.Drawable;
 
 import java.awt.*;
 
+/**
+ * Classe permettant de gérer le fonctionnement d'une batterie fictive au sein de la montre ainsi que de la dessiner sur un JPanel
+ * Via l'implémentation de l'interface Drawable
+ * */
 public class Batterie implements Drawable {
     private int niveau;
 

@@ -3,9 +3,13 @@ package model.time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+
+/**
+ * Classe permettant de récupérer et traiter l'heure actuelle sous différents formats afin de pouvoir l'utiliser sur la montre.
+ * */
 public class Heure {
     private LocalTime heure;
-    private DateTimeFormatter formatter;
+    private final DateTimeFormatter formatter;
     public Heure(DateTimeFormatter _formatter) {
         heure = LocalTime.now();
         formatter = _formatter;

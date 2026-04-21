@@ -9,21 +9,24 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+
+/**
+ * Panel permettant à l'utilisateur de choisir une couleur de background sur toute la montre.
+ * */
 public class PanelChoixCouleur extends BasePanel {
-    public PanelChoixCouleur(GestionNavigation navigator, GestionConfig _config){
-        super(navigator, _config);
+    public PanelChoixCouleur(GestionNavigation navigator, GestionConfig _config, PanelProvider provider) {
+        super(navigator, _config, provider);
     }
-    protected void initBoutonsNavigation(){
+
+    protected void initBoutonsNavigation() {
         btnLeft.setPreferredSize(new Dimension(45, 0));
         btnRight.setPreferredSize(new Dimension(45, 0));
 
-        btnRight.addActionListener(e -> this.naviguer(PanelCadran.createFromConfig(getNavigator(), getConfig())));
-        btnLeft.addActionListener(e -> this.naviguer(new PanelParametrage(getNavigator(),getConfig())));
+        btnRight.addActionListener(_ -> allerVersCadran());
+        btnLeft.addActionListener(_ -> allerVersParametrage());
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);
     }
-
-
     protected void initContenuPanel(){
         panelContenu = new JPanel(new BorderLayout());
 

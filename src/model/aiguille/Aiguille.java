@@ -1,7 +1,10 @@
 package model.aiguille;
 
 import model.time.Heure;
-
+/**
+ * CLasse abstraite modélisant le fonctionnement d'une aiguille générique
+ * Abstraite car on ne sait pas comment doit se calculer le décalage d'angle sur une horloge analogique pour une aiguille générique
+ * */
 public abstract class Aiguille {
     protected int longueur;
 

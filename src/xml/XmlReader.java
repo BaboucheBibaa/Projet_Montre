@@ -7,9 +7,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
+
+/**
+ * Classe permettant de lire au sein d'un fichier XML et de retourner le contenu de ce XML.
+ * */
 public class XmlReader {
 
-    private String filename;
+    private final String filename;
     private Document doc;
 
     public XmlReader(String filename) throws Exception {

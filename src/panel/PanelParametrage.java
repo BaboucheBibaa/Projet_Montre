@@ -6,12 +6,17 @@ import navigation.GestionNavigation;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * Panel permettant de pouvoir paramétrer les données nécessaires afin de pouvoir personnaliser la montre.
+ * */
 public class PanelParametrage extends BasePanel {
-    public PanelParametrage(GestionNavigation navigator, GestionConfig _config){
-        super(navigator, _config);
+    public PanelParametrage(GestionNavigation navigator, GestionConfig _config, PanelProvider provider) {
+        super(navigator, _config, provider);
     }
-    public void initBoutonsNavigation(){
-        btnRight.addActionListener(e -> this.naviguer(new PanelChoixCouleur(getNavigator(),getConfig())));
+
+    public void initBoutonsNavigation() {
+        btnRight.addActionListener(_ -> allerVersCouleur());
         this.add(btnRight, BorderLayout.EAST);
     }
     protected void initContenuPanel() {
@@ -100,21 +105,21 @@ public class PanelParametrage extends BasePanel {
         comboFormatDate.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Ajouter un ActionListener pour écrire dans le xml
-        comboType.addActionListener(e -> {
+        comboType.addActionListener(_ -> {
             int index = comboType.getSelectedIndex();
             if (index >= 0 && index < type.length) {
                 String valueToSave = type[index];
                 setClockFormat(valueToSave);
             }
         });
-        comboPolice.addActionListener(e -> {
+        comboPolice.addActionListener(_ -> {
             int index = comboPolice.getSelectedIndex();
             if (index >= 0 && index < police.length) {
                 String valueToSave = police[index];
                 setPolicy(valueToSave);
             }
         });
-        comboFormatHeure.addActionListener(e -> {
+        comboFormatHeure.addActionListener(_ -> {
             int index = comboFormatHeure.getSelectedIndex();
             if (index >= 0 && index < formatHeure.length) {
                 String valueToSave = formatHeure[index];
@@ -122,7 +127,7 @@ public class PanelParametrage extends BasePanel {
             }
         });
 
-        comboFormatDate.addActionListener(e -> {
+        comboFormatDate.addActionListener(_ -> {
             int index = comboFormatDate.getSelectedIndex();
             if (index >= 0 && index < formatDate.length) {
                 String valueToSave = formatDate[index];

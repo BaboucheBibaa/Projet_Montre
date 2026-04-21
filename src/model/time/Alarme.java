@@ -1,5 +1,9 @@
 package model.time;
 
+
+/**
+ * Classe permettant de gérer un système d'alarme unique au sein de la montre
+ * */
 public class Alarme {
     private int heure;
     private int minute;

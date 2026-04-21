@@ -8,12 +8,14 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.BasicStroke;
 import java.awt.Font;
-
+/**
+ * Classe héritant de Cadran qui permet de dessiner un cadran à aiguilles au sein d'une JPanel.
+ * */
 public class CadranAiguilles extends Cadran implements Drawable {
 
-    private Aiguille heureAig;
-    private Aiguille minuteAig;
-    private Aiguille secondeAig;
+    private final Aiguille heureAig;
+    private final Aiguille minuteAig;
+    private final Aiguille secondeAig;
     private int radius;
 
     public CadranAiguilles(int _centreX, int _centreY, int _radius, GestionConfig _config){
@@ -24,30 +26,9 @@ public class CadranAiguilles extends Cadran implements Drawable {
         secondeAig = new AiguilleSeconde(radius/3);
     }
 
-    public Aiguille getHeureAig() {
-        return heureAig;
-    }
-
-    public Aiguille getMinuteAig() {
-        return minuteAig;
-    }
-
-    public Aiguille getSecondeAig() {
-        return secondeAig;
-    }
-
-    public int getRadius() {
-        return radius;
-    }
-
-
-    public void setRadius(int r) {
-        this.radius = r;
-        heureAig.setLongueur(r / 5);
-        minuteAig.setLongueur(r / 4);
-        secondeAig.setLongueur(r / 3);
-    }
-
+    /**
+    * Permet de dessiner le cadran à aiguilles en fonction des coordonnées du centre de l'application
+    * */
     public void dessiner(Graphics g, int centreX, int centreY){
 
         Graphics2D g2 = (Graphics2D) g;
@@ -96,5 +77,16 @@ public class CadranAiguilles extends Cadran implements Drawable {
         g2.drawLine(centreX, centreY, xS, yS);
         g2.setStroke(new BasicStroke(1));
     }
+
+
+    // setter
+    public void setRadius(int r) {
+        this.radius = r;
+        heureAig.setLongueur(r / 5);
+        minuteAig.setLongueur(r / 4);
+        secondeAig.setLongueur(r / 3);
+    }
+
+
 
 }

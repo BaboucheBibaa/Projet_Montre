@@ -7,9 +7,13 @@ import java.awt.*;
 
 import model.time.Alarme;
 
+/**
+ * Classe permettant de lire les données de configuration de la montre en lisant un fichier XML
+ * Cette classe récupère les données traitées par les classes {@link XmlReader} et {@link XmlWriter} par délégation.
+ * */
 public class XMLConfig implements GestionConfig {
-    private XmlReader reader;
-    private XmlWriter writer;
+    private final XmlReader reader;
+    private final XmlWriter writer;
     public XMLConfig(String filename) throws Exception {
         this.reader = new XmlReader(filename);
         this.writer = new XmlWriter(filename);
