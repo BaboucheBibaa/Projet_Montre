@@ -39,8 +39,8 @@ public class PanelCalendrier extends BasePanel{
         }
     }
     protected void initBoutonsNavigation() {
-        btnLeft.addActionListener(_ -> allerVersCadran());
-        btnRight.addActionListener(_ -> allerVersChronometre());
+        btnLeft.addActionListener(e -> allerVersCadran());
+        btnRight.addActionListener(e -> allerVersChronometre());
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);
     }
@@ -55,7 +55,7 @@ public class PanelCalendrier extends BasePanel{
 
         JButton btnPrecedent = new JButton("<");
         styleBoutonFleche(btnPrecedent);
-        btnPrecedent.addActionListener(_ ->{
+        btnPrecedent.addActionListener(e ->{
             dateAffichee= dateAffichee.minusMonths(1);
             remplirCalendrier();
         });
@@ -69,7 +69,7 @@ public class PanelCalendrier extends BasePanel{
 
         JButton btnSuivant = new JButton(">");
         styleBoutonFleche(btnSuivant);
-        btnSuivant.addActionListener(_ ->{
+        btnSuivant.addActionListener(e ->{
             dateAffichee= dateAffichee.plusMonths(1);
             remplirCalendrier();
         });

@@ -16,7 +16,7 @@ public class PanelParametrage extends BasePanel {
     }
 
     public void initBoutonsNavigation() {
-        btnRight.addActionListener(_ -> allerVersCouleur());
+        btnRight.addActionListener(e -> allerVersCouleur());
         this.add(btnRight, BorderLayout.EAST);
     }
     protected void initContenuPanel() {
@@ -105,21 +105,21 @@ public class PanelParametrage extends BasePanel {
         comboFormatDate.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Ajouter un ActionListener pour écrire dans le xml
-        comboType.addActionListener(_ -> {
+        comboType.addActionListener(e -> {
             int index = comboType.getSelectedIndex();
             if (index >= 0 && index < type.length) {
                 String valueToSave = type[index];
                 setClockFormat(valueToSave);
             }
         });
-        comboPolice.addActionListener(_ -> {
+        comboPolice.addActionListener(e -> {
             int index = comboPolice.getSelectedIndex();
             if (index >= 0 && index < police.length) {
                 String valueToSave = police[index];
                 setPolicy(valueToSave);
             }
         });
-        comboFormatHeure.addActionListener(_ -> {
+        comboFormatHeure.addActionListener(e -> {
             int index = comboFormatHeure.getSelectedIndex();
             if (index >= 0 && index < formatHeure.length) {
                 String valueToSave = formatHeure[index];
@@ -127,7 +127,7 @@ public class PanelParametrage extends BasePanel {
             }
         });
 
-        comboFormatDate.addActionListener(_ -> {
+        comboFormatDate.addActionListener(e -> {
             int index = comboFormatDate.getSelectedIndex();
             if (index >= 0 && index < formatDate.length) {
                 String valueToSave = formatDate[index];

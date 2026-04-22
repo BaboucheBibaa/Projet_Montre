@@ -5,8 +5,8 @@ import cadran.CadranAiguilles;
 import cadran.CadranNumerique;
 import config.GestionConfig;
 import config.ScreenDimensions;
-import model.sante.Batterie;
-import model.sante.RythmeCardiaque;
+import panel.widgets.Batterie;
+import panel.widgets.RythmeCardiaque;
 import navigation.GestionNavigation;
 
 

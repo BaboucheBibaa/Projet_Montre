@@ -1,4 +1,4 @@
-package model.sante;
+package panel.widgets;
 import drawable.Drawable;
 
 import java.awt.*;

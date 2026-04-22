@@ -26,13 +26,14 @@ public class PanelAlarme extends BasePanel {
         JCheckBox checkactive= new JCheckBox("Alarme Activée", alarme.isActive());
         JButton btnSauver = new JButton("Sauvegarder");
 
-        btnSauver.addActionListener(_ ->{
+        btnSauver.addActionListener(e ->{
             //met à jour l'alarme avec les new valeurs
             alarme.setHeure((int)spinnerHeure.getValue());
             alarme.setMinute((int)spinnerMin.getValue());
             alarme.setActive(checkactive.isSelected());
             saveAlarme(alarme);
             JOptionPane.showMessageDialog(this, "Alarme Enregistrée !"); //Affiche fenetre de confirmation
+            lancerAlarme();
         });
 
         JPanel pTime = new JPanel();
@@ -48,8 +49,23 @@ public class PanelAlarme extends BasePanel {
 
     }
     protected void initBoutonsNavigation() {
-        btnLeft.addActionListener(_ -> allerVersChronometre());
+        btnLeft.addActionListener(e -> allerVersChronometre());
         this.add(btnLeft, BorderLayout.WEST);
+    }
+    private void lancerAlarme(){
+        //timer de rafraîchissement toutes les secondes
+        Timer timer = new Timer(1000, e -> {
+            java.time.LocalTime maintenant= java.time.LocalTime.now();
+
+            if(maintenant.getSecond() == 0 && alarme.doitSonner(maintenant.getHour(),maintenant.getMinute())){
+                declencherAlarme();
+            }
+        });
+        timer.start();
+    }
+    private void declencherAlarme(){
+        java.awt.Toolkit.getDefaultToolkit().beep();
+        JOptionPane.showMessageDialog(this,"C'est l'heure"+ java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")),"ALARME", JOptionPane.WARNING_MESSAGE);
     }
 
 }
