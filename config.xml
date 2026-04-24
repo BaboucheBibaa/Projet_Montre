@@ -5,7 +5,7 @@
     <policy>ARIAL</policy>
     <clock-format>numeric</clock-format>
     <heure-format>24</heure-format>
-    <date-format>dd-MM-yyyy</date-format>
+    <date-format>MM-dd-yyyy</date-format>
     <alarme-h>14</alarme-h>
     <alarme-m>27</alarme-m>
     <alarme-active>true</alarme-active>
