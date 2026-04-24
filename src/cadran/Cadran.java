@@ -17,7 +17,6 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Cadran {
     protected Heure heure;
-
     protected int centreX;
     protected int centreY;
     protected GestionConfig config;
@@ -84,7 +83,7 @@ public abstract class Cadran {
         heure.setHeure();
     }
     public String getTemps(){
-        return heure.getTemps();
+        return heure.toString();
     }
     public void setCentre(int x, int y) {
         this.centreX = x;

@@ -22,7 +22,7 @@ public class Heure {
         this.heure = LocalTime.now();
     }
 
-    public String getTemps() {
+    public String toString() {
         return heure.format(formatter);
     }
 

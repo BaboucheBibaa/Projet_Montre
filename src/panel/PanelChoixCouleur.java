@@ -22,8 +22,8 @@ public class PanelChoixCouleur extends BasePanel {
         btnLeft.setPreferredSize(new Dimension(45, 0));
         btnRight.setPreferredSize(new Dimension(45, 0));
 
-        btnRight.addActionListener(_ -> allerVersCadran());
-        btnLeft.addActionListener(_ -> allerVersParametrage());
+        btnRight.addActionListener(e -> allerVersCadran());
+        btnLeft.addActionListener(e -> allerVersParametrage());
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);
     }

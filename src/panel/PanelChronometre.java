@@ -20,12 +20,12 @@ public class PanelChronometre extends BasePanel{
         chrono = new Chronometre();
     }
     public void initBoutonsNavigation() {
-        btnLeft.addActionListener(_ -> {
+        btnLeft.addActionListener(e -> {
             if (timerRefresh != null) timerRefresh.stop();
             allerVersCalendrier();
         });
 
-        btnRight.addActionListener(_ -> {
+        btnRight.addActionListener(e -> {
             if (timerRefresh != null) timerRefresh.stop();
             allerVersAlarme();
         });
@@ -57,9 +57,9 @@ public class PanelChronometre extends BasePanel{
         JButton stop = new JButton("Stop");
         JButton reset = new JButton("Reset");
 
-        debut.addActionListener(_-> chrono.start());
-        stop.addActionListener(_-> chrono.stop());
-        reset.addActionListener(_-> chrono.reset());
+        debut.addActionListener(e-> chrono.start());
+        stop.addActionListener(e-> chrono.stop());
+        reset.addActionListener(e-> chrono.reset());
 
         panelBoutons.add(debut);
         panelBoutons.add(stop);
@@ -68,7 +68,7 @@ public class PanelChronometre extends BasePanel{
         panelContenu.setLayout(new BorderLayout());
         panelContenu.add(panelBoutons, BorderLayout.SOUTH);
 
-        timerRefresh = new Timer(1, _ -> panelContenu.repaint());
+        timerRefresh = new Timer(1, e -> panelContenu.repaint());
         timerRefresh.start();
     }
 }

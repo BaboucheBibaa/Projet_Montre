@@ -13,5 +13,4 @@ public class AiguilleHeure extends Aiguille {
     public double calculAngle(Heure heure){
         return Math.toRadians(heure.getHeures() * 30 - 90);
     }
-
 }

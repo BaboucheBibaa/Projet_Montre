@@ -3,8 +3,9 @@ package panel;
 import cadran.Cadran;
 import cadran.CadranAiguilles;
 import config.GestionConfig;
-import model.sante.*;
 import navigation.GestionNavigation;
+import panel.widgets.Batterie;
+import panel.widgets.RythmeCardiaque;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +28,8 @@ public class PanelCadran extends BasePanel {
     }
 
     protected void initBoutonsNavigation() {
-        btnLeft.addActionListener(_ -> allerVersCouleur());
-        btnRight.addActionListener(_ -> allerVersCalendrier());
+        btnLeft.addActionListener(e -> allerVersCouleur());
+        btnRight.addActionListener(e -> allerVersCalendrier());
 
         this.add(btnLeft, BorderLayout.WEST);
         this.add(btnRight, BorderLayout.EAST);
@@ -55,20 +56,10 @@ public class PanelCadran extends BasePanel {
     }
     private void lancerHorloge(){
         //timer de rafraîchissement toutes les secondes
-        Timer timer = new Timer(1000, _ -> {
+        Timer timer = new Timer(1000, e -> {
             cadran.setHeure();
-            model.time.Alarme alarme = this.getAlarme();
-            java.time.LocalTime maintenant= java.time.LocalTime.now();
-
-            if(maintenant.getSecond() == 0 && alarme.doitSonner(maintenant.getHour(),maintenant.getMinute())){
-                declencherAlarme();
-            }
             panelContenu.repaint();
         });
         timer.start();
-    }
-    private void declencherAlarme(){
-        java.awt.Toolkit.getDefaultToolkit().beep();
-        JOptionPane.showMessageDialog(this,"C'est l'heure"+ java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")),"ALARME", JOptionPane.WARNING_MESSAGE);
     }
 }

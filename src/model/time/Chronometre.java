@@ -15,27 +15,23 @@ public class Chronometre {
         fin = 0;
         tempsAccumule = 0;
     }
-    public boolean start(){
-        //si le chrono est déjà lancé, on ne peut pas le relancer
-        if (estLance){
-            return false;
+    public void start(){
+        //si le chrono n'est pas lancé, on le lance
+        if (!estLance){
+            //sinon, chrono pas lancé donc on le lance et on renvoie le fait que le chrono a été lancé
+            estLance = true;
+            debut = System.nanoTime();
         }
-        //sinon, chrono pas lancé donc on le lance et on renvoie le fait que le chrono a été lancé
-        estLance = true;
-        debut = System.nanoTime();
-        return true;
     }
 
-    public boolean stop(){
-        //On ne peut stopper un chrono pas lancé
-        if (!estLance){
-            return false;
+    public void stop(){
+        //Si le chrono est lancé alors on le stoppe, on ne peut stopper un chrono pas lancé.
+        if (estLance){
+            //sinon on stoppe le chrono et on stocke le moment ou le chrono a été stoppé et on renvoie si le chrono a été stoppé ou non
+            fin = System.nanoTime();
+            tempsAccumule += (fin - debut);
+            estLance = false;
         }
-        //sinon on stoppe le chrono et on stocke le moment ou le chrono a été stoppé et on renvoie si le chrono a été stoppé ou non
-        fin = System.nanoTime();
-        tempsAccumule += (fin - debut);
-        estLance = false;
-        return true;
     }
 
     //Retourne le temps actuel du chronomètre s'il n'est pas terminé, sinon retourne le temps du dernier lancement avant reset (0 par défaut)
