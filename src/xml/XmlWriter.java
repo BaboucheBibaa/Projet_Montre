@@ -34,7 +34,7 @@ public class XmlWriter {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
     }
 
@@ -64,7 +64,7 @@ public class XmlWriter {
             transformer.transform(source, result);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors de la création du PanelCadran", e);
         }
     }
 

@@ -35,7 +35,7 @@ public class XmlReader {
         try {
             recharger();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
         return Integer.parseInt(doc.getElementsByTagName("bg-r").item(0).getTextContent());
     }
@@ -44,7 +44,7 @@ public class XmlReader {
         try {
             recharger();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
         return Integer.parseInt(doc.getElementsByTagName("bg-b").item(0).getTextContent());
     }
@@ -53,7 +53,7 @@ public class XmlReader {
         try {
             recharger();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
         return Integer.parseInt(doc.getElementsByTagName("bg-g").item(0).getTextContent());
     }
@@ -62,7 +62,7 @@ public class XmlReader {
         try {
             recharger();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
         return doc.getElementsByTagName("policy").item(0).getTextContent();
     }
@@ -71,7 +71,7 @@ public class XmlReader {
         try {
             recharger();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
         return doc.getElementsByTagName("clock-format").item(0).getTextContent();
     }
@@ -80,7 +80,7 @@ public class XmlReader {
         try {
             recharger();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
         return doc.getElementsByTagName("heure-format").item(0).getTextContent();
     }
@@ -89,7 +89,7 @@ public class XmlReader {
         try {
             recharger();
         } catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
         return doc.getElementsByTagName("date-format").item(0).getTextContent();
     }
@@ -104,7 +104,7 @@ public class XmlReader {
                 }
             }
         }catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors du chargement du fichier XML", e);
         }
         return defaultValue;
     }

@@ -35,8 +35,7 @@ public class MainFrame extends JFrame implements GestionNavigation {
             BasePanel panel = panelFactory.creerPanelCadran(this, config);
             this.naviguer(panel);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Erreur lors du chargement de la configuration");
+            throw new RuntimeException("Erreur lors de la création du Panel", e);
         }
 
         setVisible(true);

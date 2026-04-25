@@ -60,7 +60,7 @@ public abstract class Cadran {
         try {
             police = config.getPolicy();
         } catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException("Erreur lors de la lecture du fichier XML", e);
         }
         g.setFont(new Font(police, Font.BOLD, 12));
         FontMetrics fm = g.getFontMetrics();

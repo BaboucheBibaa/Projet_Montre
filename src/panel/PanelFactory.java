@@ -58,8 +58,7 @@ public class PanelFactory implements PanelProvider {
             RythmeCardiaque rc = new RythmeCardiaque();
             return new PanelCadran(cadran, navigator, config, b, rc, this);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Erreur lors de la création du PanelCadran", e);
+            throw new RuntimeException("Erreur lors de la création du Panel", e);
         }
     }
 
