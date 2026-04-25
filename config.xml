@@ -2,7 +2,7 @@
     <bg-r>158</bg-r>
     <bg-g>94</bg-g>
     <bg-b>255</bg-b>
-    <policy>ARIAL</policy>
+    <policy>MONOSPACED</policy>
     <clock-format>analog</clock-format>
     <heure-format>24</heure-format>
     <date-format>MM-dd-yyyy</date-format>

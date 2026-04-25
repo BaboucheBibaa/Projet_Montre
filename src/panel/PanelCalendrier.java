@@ -22,11 +22,12 @@ import java.util.Locale;
 public class PanelCalendrier extends BasePanel{
     private LocalDate dateAffichee;
     private int JourSelectionne = -1;
+    private String police;
 
     public PanelCalendrier(GestionNavigation navigator, GestionConfig _config, PanelProvider provider) {
         super(navigator, _config, provider);
         this.dateAffichee=LocalDate.now();
-
+        police = getPolicy();
         if(this.getPanelContenu() != null){
             this.getPanelContenu().setBackground(getBgColor());
             this.getPanelContenu().setLayout(new BorderLayout());
@@ -64,7 +65,8 @@ public class PanelCalendrier extends BasePanel{
         String nomMois= dateAffichee.getMonth().getDisplayName(TextStyle.FULL,Locale.FRENCH);
         JLabel titre= new JLabel(nomMois.toUpperCase()+ " " + dateAffichee.getYear(),SwingConstants.CENTER);
         titre.setForeground(Color.BLACK);
-        titre.setFont(new Font("Arial", Font.BOLD,18));
+
+        titre.setFont(new Font(police, Font.BOLD,18));
 
         JButton btnSuivant = new JButton(">");
         styleBoutonFleche(btnSuivant);
@@ -86,6 +88,7 @@ public class PanelCalendrier extends BasePanel{
         for(String j : jourSemaine){
             JLabel lbl= new JLabel(j, SwingConstants.CENTER);
             lbl.setForeground(Color.BLACK);
+            lbl.setFont(new Font(police, Font.BOLD,18));
             grille.add(lbl);
         }
 
@@ -145,7 +148,7 @@ public class PanelCalendrier extends BasePanel{
         btn.setBorderPainted(false);
         btn.setFocusPainted(false);
         btn.setContentAreaFilled(false);
-        btn.setFont(new Font("Arial",Font.BOLD,18));
+        btn.setFont(new Font(police,Font.BOLD,18));
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 }
