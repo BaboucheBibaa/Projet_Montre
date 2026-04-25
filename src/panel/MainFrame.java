@@ -30,7 +30,7 @@ public class MainFrame extends JFrame implements GestionNavigation {
 
         try {
             GestionConfig config = new XMLConfig("config.xml");
-            PanelFactory panelFactory = new PanelFactory(config, dimensions);
+            PanelProvider panelFactory = new PanelFactory(config, dimensions);
 
             BasePanel panel = panelFactory.creerPanelCadran(this, config);
             this.naviguer(panel);

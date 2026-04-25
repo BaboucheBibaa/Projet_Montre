@@ -51,7 +51,6 @@ public class PanelCalendrier extends BasePanel{
         contenu.removeAll();
 
         JPanel zoneTitre= new JPanel(new BorderLayout());
-        zoneTitre.setBackground(getBgColor());
 
         JButton btnPrecedent = new JButton("<");
         styleBoutonFleche(btnPrecedent);

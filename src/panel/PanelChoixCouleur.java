@@ -19,9 +19,6 @@ public class PanelChoixCouleur extends BasePanel {
     }
 
     protected void initBoutonsNavigation() {
-        btnLeft.setPreferredSize(new Dimension(45, 0));
-        btnRight.setPreferredSize(new Dimension(45, 0));
-
         btnRight.addActionListener(e -> allerVersCadran());
         btnLeft.addActionListener(e -> allerVersParametrage());
         this.add(btnLeft, BorderLayout.WEST);
@@ -86,7 +83,6 @@ public class PanelChoixCouleur extends BasePanel {
                 // Afficher l'image
                 g.drawImage(image, 0, 0, null);
             }
-
         }
         ImageCouleurs imageCouleurs = new ImageCouleurs();
         panelContenu.add(imageCouleurs, BorderLayout.CENTER);

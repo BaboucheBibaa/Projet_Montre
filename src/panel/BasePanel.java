@@ -24,7 +24,7 @@ import java.awt.*;
 public abstract class BasePanel extends JPanel{
     private final GestionConfig config;
     private final GestionNavigation navigator;
-    protected PanelProvider panelProvider;
+    private final PanelProvider panelProvider;
     protected JPanel panelContenu;
     private final Color bgColor;
     protected JButton btnRight;
@@ -42,13 +42,15 @@ public abstract class BasePanel extends JPanel{
         bgColor = config.getBackgroundColor();
         btnLeft = new JButton("<");
         btnRight = new JButton(">");
-
         initBoutonsNavigation();
         initContenuPanel();
         // S'assurer que panelContenu est ajouté au CENTER
         if (panelContenu != null) {
             add(panelContenu, BorderLayout.CENTER);
+            panelContenu.setBackground(bgColor);
+
         }
+
     }
 
     protected abstract void initBoutonsNavigation();

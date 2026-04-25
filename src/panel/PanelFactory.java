@@ -49,9 +49,9 @@ public class PanelFactory implements PanelProvider {
             Cadran cadran;
 
             if ("numeric".equals(clockFormat)) {
-                cadran = new CadranNumerique(h, l, config);
+                cadran = new CadranNumerique(h/2, l/2, config);
             } else {
-                cadran = new CadranAiguilles(h, l, (h+l)/2, config);
+                cadran = new CadranAiguilles(h/2, l/2, (h+l)/2, config);
             }
 
             Batterie b = new Batterie();

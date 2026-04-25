@@ -21,7 +21,6 @@ public class PanelParametrage extends BasePanel {
     }
     protected void initContenuPanel() {
         panelContenu = new JPanel();
-        panelContenu.setBackground(getBgColor());
         panelContenu.setLayout(new BoxLayout(panelContenu, BoxLayout.Y_AXIS));
 
         String typeActuel = getClockFormat();

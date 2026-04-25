@@ -47,7 +47,6 @@ public class PanelChronometre extends BasePanel{
                 g.drawString(temps, x, y);
             }
         };
-        panelContenu.setBackground(getBgColor());
 
         JPanel panelBoutons = new JPanel();
         panelBoutons.setLayout(new FlowLayout());

@@ -17,7 +17,6 @@ public class PanelAlarme extends BasePanel {
     }
     protected void initContenuPanel(){
         panelContenu = new JPanel(new GridLayout(4,1,10,10)); // creer un panel ayant une grille de 4 ligne et 1 colonne
-        panelContenu.setBackground(getBgColor());
         this.alarme= this.getAlarme();
         // JSpinner permet de choisir un nombre avec les flèches haut et bas
 

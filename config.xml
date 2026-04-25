@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><config>
-    <bg-r>121</bg-r>
-    <bg-g>255</bg-g>
-    <bg-b>146</bg-b>
+    <bg-r>158</bg-r>
+    <bg-g>94</bg-g>
+    <bg-b>255</bg-b>
     <policy>ARIAL</policy>
-    <clock-format>numeric</clock-format>
+    <clock-format>analog</clock-format>
     <heure-format>24</heure-format>
     <date-format>MM-dd-yyyy</date-format>
     <alarme-h>14</alarme-h>

@@ -3,6 +3,7 @@ package panel;
 import cadran.Cadran;
 import cadran.CadranAiguilles;
 import config.GestionConfig;
+import drawable.Drawable;
 import navigation.GestionNavigation;
 import panel.widgets.Batterie;
 import panel.widgets.RythmeCardiaque;
@@ -17,9 +18,9 @@ import java.awt.*;
  * */
 public class PanelCadran extends BasePanel {
     private final Cadran cadran;
-    private final RythmeCardiaque rythme;
-    private final Batterie batterie;
-    public PanelCadran(Cadran c, GestionNavigation navigator, GestionConfig _config, Batterie _batterie, RythmeCardiaque rc, PanelProvider provider) {
+    private final Drawable rythme;
+    private final Drawable batterie;
+    public PanelCadran(Cadran c, GestionNavigation navigator, GestionConfig _config, Drawable _batterie, Drawable rc, PanelProvider provider) {
         super(navigator, _config, provider);
         this.cadran = c;
         this.rythme = rc;
@@ -39,7 +40,6 @@ public class PanelCadran extends BasePanel {
             //Redéfinition de classe anonyme de JPanel + surdéfinition de la méthode paintComponent
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                setBackground(getBgColor());
                 int centreX = getWidth() / 2;
                 int centreY = getHeight() / 2;
                 int radius = Math.min(getWidth(), getHeight()) / 3;
