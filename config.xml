@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><config>
+    <bg-r>158</bg-r>
+    <bg-g>94</bg-g>
+    <bg-b>255</bg-b>
+    <policy>MONOSPACED</policy>
+    <clock-format>analog</clock-format>
+    <heure-format>24</heure-format>
+    <date-format>MM-dd-yyyy</date-format>
+    <alarme-h>14</alarme-h>
+    <alarme-m>43</alarme-m>
+    <alarme-active>true</alarme-active>
+</config>

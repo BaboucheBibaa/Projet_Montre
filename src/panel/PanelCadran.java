@@ -1,0 +1,65 @@
+package panel;
+
+import cadran.Cadran;
+import cadran.CadranAiguilles;
+import config.GestionConfig;
+import drawable.Drawable;
+import navigation.GestionNavigation;
+import panel.widgets.Batterie;
+import panel.widgets.RythmeCardiaque;
+
+import javax.swing.*;
+import java.awt.*;
+
+
+/**
+ * Classe permettant d'afficher le contenu du cadran en fonction des données choisies par l'utilisateur.
+ * Cadran Numérique ou Analogique
+ * */
+public class PanelCadran extends BasePanel {
+    private final Cadran cadran;
+    private final Drawable rythme;
+    private final Drawable batterie;
+    public PanelCadran(Cadran c, GestionNavigation navigator, GestionConfig _config, Drawable _batterie, Drawable rc, PanelProvider provider) {
+        super(navigator, _config, provider);
+        this.cadran = c;
+        this.rythme = rc;
+        this.batterie = _batterie;
+        lancerHorloge();
+    }
+
+    protected void initBoutonsNavigation() {
+        btnLeft.addActionListener(e -> allerVersCouleur());
+        btnRight.addActionListener(e -> allerVersCalendrier());
+
+        this.add(btnLeft, BorderLayout.WEST);
+        this.add(btnRight, BorderLayout.EAST);
+    }
+    protected void initContenuPanel(){
+        panelContenu = new JPanel(){
+            //Redéfinition de classe anonyme de JPanel + surdéfinition de la méthode paintComponent
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                int centreX = getWidth() / 2;
+                int centreY = getHeight() / 2;
+                int radius = Math.min(getWidth(), getHeight()) / 3;
+                rythme.dessiner(g, centreX, centreY+60);
+                batterie.dessiner(g, 0, 0);
+
+                cadran.setCentre(centreX, centreY);
+                if (cadran instanceof CadranAiguilles ca) {
+                    ca.setRadius(radius);
+                }
+                cadran.dessiner(g, centreX, centreY);
+            }
+        };
+    }
+    private void lancerHorloge(){
+        //timer de rafraîchissement toutes les secondes
+        Timer timer = new Timer(1000, e -> {
+            cadran.setHeure();
+            panelContenu.repaint();
+        });
+        timer.start();
+    }
+}

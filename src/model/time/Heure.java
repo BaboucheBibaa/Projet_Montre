@@ -1,21 +1,28 @@
+package model.time;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+
+/**
+ * Classe permettant de récupérer et traiter l'heure actuelle sous différents formats afin de pouvoir l'utiliser sur la montre.
+ * */
 public class Heure {
-
     private LocalTime heure;
-
-    private DateTimeFormatter formatter;
-    Heure(){
+    private final DateTimeFormatter formatter;
+    public Heure(DateTimeFormatter _formatter) {
         heure = LocalTime.now();
-        formatter=DateTimeFormatter.ofPattern("HH:mm:ss");
+        formatter = _formatter;
     }
 
+    public LocalTime getHeure() {
+        return heure;
+    }
     public void setHeure() {
         this.heure = LocalTime.now();
     }
 
-    public String getTemps() {
+    public String toString() {
         return heure.format(formatter);
     }
 
@@ -29,18 +36,5 @@ public class Heure {
 
     public int getHeures() {
         return heure.getHour();
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-
-        Heure temps = new Heure();
-        System.out.println(temps.getTemps());
-        while (true){
-            Thread.sleep(1000);
-            temps.setHeure();
-            System.out.println(temps.getTemps());
-
-        }
-
     }
 }
