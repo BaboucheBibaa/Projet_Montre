@@ -21,7 +21,7 @@ public class PanelParametrage extends BasePanel {
     }
     protected void initContenuPanel() {
         panelContenu = new JPanel();
-        panelContenu.setLayout(new BoxLayout(panelContenu, BoxLayout.Y_AXIS));
+        panelContenu.setLayout(new BoxLayout(panelContenu, BoxLayout.Y_AXIS)); //oraganisation des composants verticalement
 
         String typeActuel = getClockFormat();
         String policeActuelle = getPolicy();
@@ -38,6 +38,7 @@ public class PanelParametrage extends BasePanel {
         String[] formatHeure = {"12", "24"};
         String[] formatDate = {"dd-MM-yyyy","yyyy-MM-dd","MM-dd-yyyy"};
 
+        //Cr&ation des listes déroulantes
         JComboBox<String> comboType = new JComboBox<>(typeAffiche);
         JComboBox<String> comboPolice = new JComboBox<>(policeAffiche);
         JComboBox<String> comboFormatHeure = new JComboBox<>(formatHeureAffichee);

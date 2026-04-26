@@ -27,7 +27,7 @@ public class PanelChoixCouleur extends BasePanel {
     protected void initContenuPanel(){
         panelContenu = new JPanel(new BorderLayout());
 
-        // Ajouter le label au-dessus
+        // Ajouter le label au-dessus pour un label d'instruction avec la police défini dans la config
         JLabel label = new JLabel("Veuillez choisir la couleur du background");
         String police = getPolicy();
         label.setFont(new Font(police, Font.BOLD, 10));
@@ -40,6 +40,7 @@ public class PanelChoixCouleur extends BasePanel {
             private BufferedImage image;
 
             public ImageCouleurs(){
+                //détection du clic pour capturer la couleur
                 addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
                         // Vérifier que l'image existe et les coordonnées sont valides
@@ -48,7 +49,8 @@ public class PanelChoixCouleur extends BasePanel {
 
                             int rgb = image.getRGB(e.getX(), e.getY());
                             Color c = new Color(rgb);
-
+                            
+                            //maj de la config via la méthode setRGB
                             setRGB(String.valueOf(c.getRed()),
                                     String.valueOf(c.getGreen()),
                                     String.valueOf(c.getBlue()));
@@ -58,11 +60,13 @@ public class PanelChoixCouleur extends BasePanel {
                 });
             }
 
+            //génération algorithme de la palette de couleur
             private void generateImage(int width, int height) {
                 image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
                 for (int x = 0; x < width; x++) {
                     for (int y = 0; y < height; y++) {
+                        //Utilisation du modèle HSB (Teinte , Saturation , Luminosité)
                         float hue = (float) x / width;           // 0 → 1
                         float saturation = 1.0f - ((float) y / height); // 1 → 0
                         float brightness = 1.0f;

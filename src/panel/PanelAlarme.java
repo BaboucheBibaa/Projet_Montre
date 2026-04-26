@@ -25,6 +25,7 @@ public class PanelAlarme extends BasePanel {
         JCheckBox checkactive= new JCheckBox("Alarme Activée", alarme.isActive());
         JButton btnSauver = new JButton("Sauvegarder");
 
+        //Action lors du clic sur le bouton sauvegarder.
         btnSauver.addActionListener(e ->{
             //met à jour l'alarme avec les new valeurs
             alarme.setHeure((int)spinnerHeure.getValue());
@@ -35,6 +36,7 @@ public class PanelAlarme extends BasePanel {
             lancerAlarme();
         });
 
+        //Organisation visuelle dans un sous-panel
         JPanel pTime = new JPanel();
         pTime.setBackground(getBgColor());
         pTime.add(new JLabel("H :"));
@@ -53,6 +55,7 @@ public class PanelAlarme extends BasePanel {
     }
     private void lancerAlarme(){
         //timer de rafraîchissement toutes les secondes
+        // Timer Swing : exécute une vérification toutes les 1000ms (1 seconde)
         Timer timer = new Timer(1000, e -> {
             java.time.LocalTime maintenant= java.time.LocalTime.now();
 

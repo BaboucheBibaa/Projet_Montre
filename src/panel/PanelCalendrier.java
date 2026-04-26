@@ -26,13 +26,14 @@ public class PanelCalendrier extends BasePanel{
 
     public PanelCalendrier(GestionNavigation navigator, GestionConfig _config, PanelProvider provider) {
         super(navigator, _config, provider);
-        this.dateAffichee=LocalDate.now();
+        this.dateAffichee=LocalDate.now(); //initialise le mois qui est en cours
         police = getPolicy();
+        //configuration initiale du panel
         if(this.getPanelContenu() != null){
             this.getPanelContenu().setBackground(getBgColor());
             this.getPanelContenu().setLayout(new BorderLayout());
         }
-        remplirCalendrier();
+        remplirCalendrier(); // permet de générer l'affichage du calendrier.
     }
     protected void initContenuPanel(){
         if(this.panelContenu == null){
@@ -49,8 +50,8 @@ public class PanelCalendrier extends BasePanel{
         JPanel contenu = this.getPanelContenu();
         if(contenu == null){return;}
 
-        contenu.removeAll();
-
+        contenu.removeAll(); //Nettoie le panel avant de le redessiner
+        //1. Zone Titre (Mois+Année) + bouton navigation.
         JPanel zoneTitre= new JPanel(new BorderLayout());
 
         JButton btnPrecedent = new JButton("<");
@@ -81,17 +82,19 @@ public class PanelCalendrier extends BasePanel{
 
         contenu.add(zoneTitre, BorderLayout.NORTH);
 
+        //2. Grille des jours.
         JPanel grille = new JPanel(new GridLayout(0,7));
         grille.setBackground(getBgColor());
 
         String[] jourSemaine= {"L","Mar","Mer","J","V","S","D"};
-        for(String j : jourSemaine){
+        for(String j : jourSemaine){ //boucle ajout en-tête
             JLabel lbl= new JLabel(j, SwingConstants.CENTER);
             lbl.setForeground(Color.BLACK);
             lbl.setFont(new Font(police, Font.BOLD,18));
             grille.add(lbl);
         }
 
+        //3.Calcul du positionnement
         YearMonth moisActuel= YearMonth.from(dateAffichee);
         int premierJourDeSemaine= moisActuel.atDay(1).getDayOfWeek().getValue();
         int nbJoursDansMois= moisActuel.lengthOfMonth();
@@ -100,7 +103,7 @@ public class PanelCalendrier extends BasePanel{
             grille.add(new JLabel(""));
         }
 
-        for(int jour=1 ; jour <= nbJoursDansMois ; jour++){
+        for(int jour=1 ; jour <= nbJoursDansMois ; jour++){ //Génération des jours du mois
             final int j=jour;
 
             JLabel lblJour = new JLabel(String.valueOf(jour),SwingConstants.CENTER);

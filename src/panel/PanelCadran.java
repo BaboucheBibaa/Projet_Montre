@@ -25,7 +25,7 @@ public class PanelCadran extends BasePanel {
         this.cadran = c;
         this.rythme = rc;
         this.batterie = _batterie;
-        lancerHorloge();
+        lancerHorloge(); //démarre ici la boucle de rafraichissement
     }
 
     protected void initBoutonsNavigation() {
